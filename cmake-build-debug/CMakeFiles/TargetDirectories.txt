@@ -1,3 +1,0 @@
-/Users/alina/CLionProjects/cdataFrame-Abdel-Alina-PP/cmake-build-debug/CMakeFiles/cdataFrame_Abdel_Alina_PP.dir
-/Users/alina/CLionProjects/cdataFrame-Abdel-Alina-PP/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/alina/CLionProjects/cdataFrame-Abdel-Alina-PP/cmake-build-debug/CMakeFiles/rebuild_cache.dir
