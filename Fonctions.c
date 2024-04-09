@@ -9,6 +9,7 @@ COLUMN * create_column(char * titre){
     ptr_col = &colonne;
     ptr_col->titre = titre;
     ptr_col->taille_ph = 0;
+    ptr_col->taille_log = 0;
     return ptr_col;
 }
 
@@ -26,9 +27,9 @@ int insert_value(COLUMN* col, int value){
         col->donnees[col->taille_log]=value;
         col->taille_log++;
         return 1;
-    } else {
-        return 0;
     }
+    return 0;
+
 }
 /**
 * @brief : Add a new value to a column
