@@ -31,12 +31,7 @@ int insert_value(COLUMN* col, int value){
     return 0;
 
 }
-/**
-* @brief : Add a new value to a column
-* @param1 : Pointer to a column
-* @param2 : The value to be added
-* @return : 1 if the value is added 0 otherwise
-*/
+
 
 
 
