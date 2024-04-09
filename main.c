@@ -1,7 +1,13 @@
-//
-// Created by Alina FREDERIC on 27/03/2024.
-//
-// coucou
-// Tu vas bien ??
+#include <stdio.h>
+#include "fonctions.h"
 
-// olla
+int main()
+{
+    COLUMN* col;
+    col = create_column("My column");
+    return 0;
+}
+
+
+
+
