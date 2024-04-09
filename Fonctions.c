@@ -4,9 +4,8 @@
 
 
 COLUMN * create_column(char * titre){
-    COLUMN colonne;
     COLUMN* ptr_col;
-    ptr_col = &colonne;
+    ptr_col = (COLUMN *)malloc(sizeof(COLUMN));
     ptr_col->titre = titre;
     ptr_col->taille_ph = 0;
     ptr_col->taille_log = 0;
