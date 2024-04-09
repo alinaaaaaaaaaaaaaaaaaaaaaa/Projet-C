@@ -11,3 +11,5 @@ COLUMN * create_column(char * titre){
     return ptr_col;
 }
 
+
+
