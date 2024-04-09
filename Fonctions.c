@@ -1,5 +1,6 @@
 #include "fonctions.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 
 
@@ -31,7 +32,33 @@ int insert_value(COLUMN* col, int value){
 
 }
 
+void delete_column(COLUMN **col){
+    free((*col)->donnees);
+    free(*col);
+}
 
+void print_col(COLUMN* col){
+    for (int i=0;i<col->taille_log;i++){
+        printf("[%d] %d\n",i,col->donnees[i]);
+    }
+}
 
+int nbr_occ(COLUMN * col,int x){
+    int cpt=0;
+    for (int i=0;i<col->taille_log;i++){
+        if ((col->donnees[i])==x)
+        {
+            cpt+=1;
+        }
+    }
+    return cpt;
+}
 
+int pos_x(COLUMN* col, int x) {
+    if (x >= 0 && x < col->taille_log) {
+        return col->donnees[x];
+    } else {
+        return NULL;
+    }
+}
 

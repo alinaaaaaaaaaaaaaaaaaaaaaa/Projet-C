@@ -11,6 +11,12 @@ typedef struct {
 
 COLUMN * create_column(char * titre);
 int insert_value(COLUMN* col, int value);
+void delete_column(COLUMN **col);
+void print_col(COLUMN* col);
+
+//4.1.5
+int nbr_occ(COLUMN* col,int x);
+int pos_x(COLUMN* col,int x);
 
 
 
