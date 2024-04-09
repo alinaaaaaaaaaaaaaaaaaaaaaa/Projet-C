@@ -10,6 +10,8 @@ typedef struct {
 }COLUMN;
 
 COLUMN * create_column(char * titre);
+int insert_value(COLUMN* col, int value);
+
 
 
 
