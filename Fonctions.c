@@ -43,6 +43,7 @@ void print_col(COLUMN* col){
     }
 }
 
+//4.1.5
 int nbr_occ(COLUMN * col,int x){
     int cpt=0;
     for (int i=0;i<col->taille_log;i++){
@@ -61,4 +62,38 @@ int pos_x(COLUMN* col, int x) {
         return NULL;
     }
 }
+
+int sup_x(COLUMN* col, int x) {
+    int cpt=0;
+    for (int i=0;i<col->taille_log;i++){
+        if ((col->donnees[i])>x)
+        {
+            cpt+=1;
+        }
+    }
+    return cpt;
+}
+
+int inf_x(COLUMN* col, int x) {
+    int cpt=0;
+    for (int i=0;i<col->taille_log;i++){
+        if ((col->donnees[i])<x)
+        {
+            cpt+=1;
+        }
+    }
+    return cpt;
+}
+
+int equal_x(COLUMN * col,int x){
+    int cpt=0;
+    for (int i=0;i<col->taille_log;i++){
+        if ((col->donnees[i])==x)
+        {
+            cpt+=1;
+        }
+    }
+    return cpt;
+}
+
 

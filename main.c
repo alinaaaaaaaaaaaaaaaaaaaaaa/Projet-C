@@ -42,6 +42,29 @@ int main(){
         printf("La position %d est en dehors des limites de la colonne.\n", z);
     }
 
+    printf("Saisir une valeur:\n");
+    int a;
+    scanf("%d",&a);
+    int sup;
+    sup=sup_x(mycol, a);
+    printf("Le nombre de valeurs supérieurs à %d est de %d",a,sup);
+
+    printf("Saisir une valeur:\n");
+    int b;
+    scanf("%d",&b);
+    int inf;
+    inf=inf_x(mycol,b);
+    printf("Le nombre de valeurs inférieur à %d est de %d",b,inf);
+
+    printf("\nSaisir une valeur:\n");
+    int c;
+    scanf("%d",&c);
+    int equal;
+    equal=equal_x(mycol,c);
+    printf("Le nombre de valeurs égales à %d est de %d",c,equal);
+
+
+
     return 0;
 }
 

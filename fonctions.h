@@ -17,6 +17,9 @@ void print_col(COLUMN* col);
 //4.1.5
 int nbr_occ(COLUMN* col,int x);
 int pos_x(COLUMN* col,int x);
+int sup_x(COLUMN* col, int x);
+int inf_x(COLUMN* col, int x);
+int equal_x(COLUMN * col,int x);
 
 
 
