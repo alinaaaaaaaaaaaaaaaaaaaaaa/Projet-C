@@ -2,11 +2,15 @@
 #include "fonctions.h"
 
 
+
 int main(){
-    printf("hello world\n");
+  /*  printf("hello world\n");
     COLUMN * mycol ;
     mycol = create_column("My column");
     printf("%s %d\n",mycol ->titre,mycol->taille_ph);
+    printf("%s %d\n",mycol ->titre,mycol->taille_ph);
+    printf("%s %d\n",mycol ->titre,mycol->taille_ph);
+
     int val = 5;
 
     if (insert_value(mycol, val)) {
@@ -37,7 +41,7 @@ int main(){
     scanf("%d",&z);
     pos=pos_x(mycol,z);
     if (pos!= NULL) {
-        printf("La valeur à la position %d est : %d\n", z, pos);
+        printf("La valeur a la position %d est : %d\n", z, pos);
     } else {
         printf("La position %d est en dehors des limites de la colonne.\n", z);
     }
@@ -65,6 +69,27 @@ int main(){
 
 
 
+COLUMN ** create_cdata(int nbr);
+int fill_cdata(int nbr,COLUMN ** tab);
+void afficher_cdata (COLUMN ** tab,int nbr);
+
+    */
+    int nbr;
+    COLUMN ** tab;
+    printf("Saisir le nombre de colonne du cdata\n");
+    scanf("%d",&nbr);
+    tab = create_cdata(nbr);
+    if (fill_cdata(nbr,tab)) {
+        printf("cdata remplis\n");
+    }else {
+        printf("pas rempli\n");
+    }
+    afficher_cdata(tab,nbr);
+
     return 0;
 }
+
+
+
+
 

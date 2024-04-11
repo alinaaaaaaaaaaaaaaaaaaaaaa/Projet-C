@@ -1,6 +1,7 @@
 #include "fonctions.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 
 
@@ -96,4 +97,54 @@ int equal_x(COLUMN * col,int x){
     return cpt;
 }
 
+
+COLUMN ** create_cdata(int nbr){
+    COLUMN ** tab;
+    tab = (COLUMN**) malloc(nbr*sizeof (COLUMN*));
+    for (int i=0; i <nbr;i++){
+        tab[i] = create_column("");
+    }
+    return tab;
+}
+
+int fill_cdata(int nbr, COLUMN **tab) {
+    int test;
+    for (int i = 0; i < nbr; i++) {
+        char titre[100]; // Allocation d'un espace pour stocker le titre
+
+        // Demander à l'utilisateur de saisir le titre de la colonne
+        printf("Saisir le titre de la %deme colonne\n", i + 1);
+        scanf("%s", titre);
+
+        // Allouer de l'espace pour stocker le titre et copier la saisie
+        tab[i]->titre = malloc(strlen(titre) + 1);
+        strcpy(tab[i]->titre, titre);
+
+
+        // Demander à l'utilisateur de saisir le nombre de valeurs pour la colonne
+        int n;
+        printf("Saisir le nombre de valeurs pour la colonne %d\n", i + 1);
+        scanf("%d", &n);
+
+        // Demander à l'utilisateur de saisir les valeurs pour la colonne
+        for (int j = 0; j < n; j++) {
+            int val;
+            printf("Saisir la %deme valeur de la %deme colonne\n", j + 1, i + 1);
+            scanf("%d", &val);
+            // Insérer la valeur dans la colonne
+            test = insert_value(tab[i], val);
+        }
+    }
+    return test;
+}
+
+
+
+void afficher_cdata (COLUMN ** tab, int nbr){
+    for (int i = 0;i<nbr;i++){
+        printf("%s\n",tab[i]->titre);
+        print_col(tab[i]); // *(tab+i)
+        printf("==============================================\n");
+    }
+}
 

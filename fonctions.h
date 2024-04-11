@@ -22,6 +22,12 @@ int inf_x(COLUMN* col, int x);
 int equal_x(COLUMN * col,int x);
 
 
+COLUMN ** create_cdata(int nbr);
+int fill_cdata(int nbr,COLUMN ** tab);
+void afficher_cdata (COLUMN ** tab,int nbr);
+
+
+
 
 
 
