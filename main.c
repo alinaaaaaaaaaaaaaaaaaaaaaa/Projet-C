@@ -69,10 +69,6 @@ int main(){
 
 
 
-COLUMN ** create_cdata(int nbr);
-int fill_cdata(int nbr,COLUMN ** tab);
-void afficher_cdata (COLUMN ** tab,int nbr);
-
     */
     int nbr;
     COLUMN ** tab;
@@ -85,6 +81,28 @@ void afficher_cdata (COLUMN ** tab,int nbr);
         printf("pas rempli\n");
     }
     afficher_cdata(tab,nbr);
+    int n;
+    printf("Saisir le nombre de lignes a afficher :\n");
+    scanf("%d",&n);
+    afficher_cdata_lignes(tab,nbr,n);
+
+    if (ajouter_ligne(tab,nbr)) {
+        printf("ligne ajoutee\n");
+    }else {
+        printf("pas ajoutee\n");
+    }
+    afficher_cdata(tab,nbr);
+    int l;
+    printf("Saisir l'indice de la ligne a supprimer :");
+    scanf("%d",&l);
+    if (delete_ligne(tab,nbr,l)) {
+        printf("ligne supprimee\n");
+    }else {
+        printf("pas supprimee\n");
+    }
+    afficher_cdata(tab,nbr);
+
+
 
     return 0;
 }

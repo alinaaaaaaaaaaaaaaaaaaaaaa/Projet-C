@@ -109,6 +109,11 @@ COLUMN ** create_cdata(int nbr){
 
 int fill_cdata(int nbr, COLUMN **tab) {
     int test;
+    // Demander à l'utilisateur de saisir le nombre de valeurs pour la colonne
+    int n;
+    printf("Saisir le nombre de valeurs pour les colonnes\n");
+    scanf("%d", &n);
+
     for (int i = 0; i < nbr; i++) {
         char titre[100]; // Allocation d'un espace pour stocker le titre
 
@@ -120,11 +125,6 @@ int fill_cdata(int nbr, COLUMN **tab) {
         tab[i]->titre = malloc(strlen(titre) + 1);
         strcpy(tab[i]->titre, titre);
 
-
-        // Demander à l'utilisateur de saisir le nombre de valeurs pour la colonne
-        int n;
-        printf("Saisir le nombre de valeurs pour la colonne %d\n", i + 1);
-        scanf("%d", &n);
 
         // Demander à l'utilisateur de saisir les valeurs pour la colonne
         for (int j = 0; j < n; j++) {
@@ -147,4 +147,75 @@ void afficher_cdata (COLUMN ** tab, int nbr){
         printf("==============================================\n");
     }
 }
+
+void afficher_cdata_lignes(COLUMN ** tab, int nbr,int lim){
+    for (int i = 0;i<nbr;i++){
+        printf("%s\n",tab[i]->titre);
+        for (int j=0;j<lim;j++){
+            printf("[%d] %d\n",j,tab[i]->donnees[j]);
+        }
+        printf("==============================================\n");
+    }
+}
+
+
+void afficher_cdata_col(COLUMN ** tab, int nbr){
+    afficher_cdata(tab,nbr);
+}
+
+int ajouter_ligne(COLUMN ** tab, int nbr){
+    int val,test;
+    for (int i = 0;i<nbr;i++){
+        printf("Saisir la valeur a ajouté a la derniere position de la colonne %d\n",i+1);
+        scanf("%d",&val);
+        test = insert_value(tab[i],val);
+    }
+    return test;
+}
+
+int delete_ligne(COLUMN ** tab, int nbr,int ind) {
+        if (ind < (*tab)->taille_log) {
+            for (int i = 0; i < nbr; i++) {
+                for (int j = ind; j < tab[i]->taille_log - 1; j++) {
+                    tab[i]->donnees[j] = tab[i]->donnees[j + 1];
+                }
+                tab[i]->taille_log--;
+            }
+            return 1;
+        } else if(ind ==  (*tab)->taille_log) {
+            for (int i = 0; i < nbr; i++) {
+                tab[i]->taille_log--;
+            }
+            return 1;
+        } else {
+            return 0;
+        }
+
+}
+
+/*void ajouter_col(COLUMN ** tab,int nbr){
+    char titre [100];
+    tab = realloc(tab,(nbr +1)* sizeof(COLUMN**));
+    printf("Saisir le titre de la nouvelle colonne :\n");
+    scanf("%s",titre);
+    tab[nbr] = create_column(titre);
+    tab[nbr]->taille_log = tab[nbr-1]->taille_log;
+    tab[nbr]->taille_ph = tab[nbr-1]->taille_ph;
+
+
+
+
+    for (int j = 0; j < nbr; j++) {
+        int val;
+        printf("Saisir la %deme valeur de la nouvelle colonne\n", j + 1);
+        scanf("%d", &val);
+        // Insérer la valeur dans la colonne
+        if (insert_value(tab[nbr], val)) {
+            continue;
+        }else {
+            break;
+        }
+    }
+} */
+
 

@@ -25,6 +25,11 @@ int equal_x(COLUMN * col,int x);
 COLUMN ** create_cdata(int nbr);
 int fill_cdata(int nbr,COLUMN ** tab);
 void afficher_cdata (COLUMN ** tab,int nbr);
+void afficher_cdata_lignes(COLUMN ** tab, int nbr,int lim);
+void afficher_cdata_col(COLUMN ** tab, int nbr);
+int ajouter_ligne(COLUMN ** tab, int nbr);
+int delete_ligne(COLUMN ** tab, int nbr,int ind);
+void ajouter_col(COLUMN ** tab,int nbr);
 
 
 
