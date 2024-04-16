@@ -193,9 +193,9 @@ int delete_ligne(COLUMN ** tab, int nbr,int ind) {
 
 }
 
-/*void ajouter_col(COLUMN ** tab,int nbr){
+/*int ajouter_col(COLUMN ** tab,int nbr){
     char titre [100];
-    tab = realloc(tab,(nbr +1)* sizeof(COLUMN**));
+    tab = realloc(tab,nbr +1);
     printf("Saisir le titre de la nouvelle colonne :\n");
     scanf("%s",titre);
     tab[nbr] = create_column(titre);
@@ -203,36 +203,66 @@ int delete_ligne(COLUMN ** tab, int nbr,int ind) {
     tab[nbr]->taille_ph = tab[nbr-1]->taille_ph;
 
 
-
+    int test;
 
     for (int j = 0; j < nbr; j++) {
         int val;
         printf("Saisir la %deme valeur de la nouvelle colonne\n", j + 1);
         scanf("%d", &val);
         // Insérer la valeur dans la colonne
-        if (insert_value(tab[nbr], val)) {
-            continue;
-        }else {
-            break;
-        }
+        test = insert_value(tab[nbr], val);
     }
-} */
-
+    return test;
+}
+*/
 int supr_col(COLUMN ** tab, int* nbr, int ind) {
     if (ind < 0 || ind >= *nbr) {
-        // Vérifier si l'indice est valide
-        return 0; // Indice invalide
+        return 0;
     }
 
     delete_column(tab[ind]); // Supprimer la colonne à l'index ind
-    free(tab[ind]); // Libérer la mémoire de la colonne supprimée
+    free(tab[ind]); // Libére la mémoire de la colonne supprimée
 
-    // Déplacer les colonnes suivantes vers la gauche pour combler l'espace
     for (int i = ind; i < *nbr - 1; i++) {
         tab[i] = tab[i + 1];
     }
 
-    (*nbr)--; // Décrémenter le nombre de colonnes
+    (*nbr)--;
 
     return 1; // Suppression réussie
+}
+
+int renommer_col(COLUMN ** tab,int ind){
+    char s[100];
+    printf("Saisir le titre de la colonne indice %d :\n",ind);
+    scanf("%s",s);
+    strcpy(tab[ind]->titre, s);
+}
+
+int val_existance(COLUMN ** tab,int nbcol,int val){ //nbr=nbcol
+    for(int i=0;i<nbcol;i++){ //parcours les col
+        for (int j=0;j<tab[i]->taille_log;j++){ //parcours les lig
+            if (tab[i]->donnees[j]==val)
+            {
+                return 1;
+            }
+
+        }
+    }
+    return 0;
+}
+
+int remplacer_val(COLUMN ** tab,int pos_col,int pos_lig,int val,int nbr){
+    if (pos_col<nbr && pos_lig < (*tab)->taille_log && pos_col >= 0 && pos_lig>=0 ){
+        tab[pos_col]->donnees[pos_lig]=val;
+        return 1;
+    }
+    return 0;
+
+}
+
+void afficher_titres(COLUMN ** tab,int nbcol){
+    for(int i=0;i<nbcol;i++){
+        printf("Le titre de la colonne à l'indice %d est : %s\n",i,tab[i]->titre);
+    }
 }

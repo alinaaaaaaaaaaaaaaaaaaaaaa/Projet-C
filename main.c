@@ -81,7 +81,8 @@ int main(){
         printf("pas rempli\n");
     }
     afficher_cdata(tab,nbr);
-    /*int n;
+/*
+    int n;
     printf("Saisir le nombre de lignes a afficher :\n");
     scanf("%d",&n);
     afficher_cdata_lignes(tab,nbr,n);
@@ -100,8 +101,18 @@ int main(){
     }else {
         printf("pas supprimee\n");
     }
-    afficher_cdata(tab,nbr); */
-    int ind;
+    afficher_cdata(tab,nbr);*/
+
+
+    /*if (ajouter_col(tab,nbr)) {
+        printf("colonne ajoutée\n");
+    }else {
+        printf("colonne supprimee\n");
+    }
+    afficher_cdata(tab,nbr);*/
+
+
+    /*int ind;
     printf("Saisir l'indice de la colonne a supprimer :");
     scanf("%d",&ind);
     if (supr_col(tab,&nbr,ind)) {
@@ -110,9 +121,46 @@ int main(){
         printf("pas supprimee\n");
     }
 
-    afficher_cdata(tab,nbr);
+    afficher_cdata(tab,nbr);*/
+
+    /*int indice;
+    printf("Saisir l'indice de la colonne dont le titre doit être modifié :");
+    scanf("%d",&indice);
+    if (renommer_col(tab,indice)) {
+        printf("titre modifié\n");
+    }else {
+        printf("titre non modifié\n");
+    }
+
+    afficher_cdata(tab,nbr);*/
+
+    /*int valeur;
+    printf("Saisir la valeur à trouver si elle existe dans le Cdata :");
+    scanf("%d",&valeur);
+    if (val_existance(tab,nbr,valeur)){
+        printf("valeur existante\n");
+    }else {
+        printf("valeur non existante\n");
+    }*/
 
 
+    /*int pos_col,pos_lig,nv_valeur;
+    printf("Saisir l'indice de la colonne de la valeur à modifié:");
+    scanf("%d",&pos_col);
+    printf("Saisir l'indice de la ligne de la valeur à modifié:");
+    scanf("%d",&pos_lig);
+    printf("Saisir la valeur qui doit remplacer celle à la %d col et %d lig:",pos_col,pos_lig);
+    scanf("%d",&nv_valeur);
+
+    if (remplacer_val(tab,pos_col,pos_lig,nv_valeur,nbr)){
+        printf("valeur modifié avec succès\n");
+    }else {
+        printf("la valeur ne peut être modifié\n");
+    }
+
+    afficher_cdata(tab,nbr);*/
+
+    afficher_titres(tab,nbr);
 
     return 0;
 }
