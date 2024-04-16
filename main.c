@@ -81,7 +81,7 @@ int main(){
         printf("pas rempli\n");
     }
     afficher_cdata(tab,nbr);
-    int n;
+    /*int n;
     printf("Saisir le nombre de lignes a afficher :\n");
     scanf("%d",&n);
     afficher_cdata_lignes(tab,nbr,n);
@@ -100,6 +100,16 @@ int main(){
     }else {
         printf("pas supprimee\n");
     }
+    afficher_cdata(tab,nbr); */
+    int ind;
+    printf("Saisir l'indice de la colonne a supprimer :");
+    scanf("%d",&ind);
+    if (supr_col(tab,&nbr,ind)) {
+        printf("colonne supprimee\n");
+    }else {
+        printf("pas supprimee\n");
+    }
+
     afficher_cdata(tab,nbr);
 
 

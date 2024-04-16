@@ -29,7 +29,8 @@ void afficher_cdata_lignes(COLUMN ** tab, int nbr,int lim);
 void afficher_cdata_col(COLUMN ** tab, int nbr);
 int ajouter_ligne(COLUMN ** tab, int nbr);
 int delete_ligne(COLUMN ** tab, int nbr,int ind);
-void ajouter_col(COLUMN ** tab,int nbr);
+//int ajouter_col(COLUMN ** tab,int nbr);
+int supr_col(COLUMN ** tab, int* nbr,int ind);
 
 
 

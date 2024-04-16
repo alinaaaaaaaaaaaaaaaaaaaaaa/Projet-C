@@ -218,4 +218,21 @@ int delete_ligne(COLUMN ** tab, int nbr,int ind) {
     }
 } */
 
+int supr_col(COLUMN ** tab, int* nbr, int ind) {
+    if (ind < 0 || ind >= *nbr) {
+        // Vérifier si l'indice est valide
+        return 0; // Indice invalide
+    }
 
+    delete_column(tab[ind]); // Supprimer la colonne à l'index ind
+    free(tab[ind]); // Libérer la mémoire de la colonne supprimée
+
+    // Déplacer les colonnes suivantes vers la gauche pour combler l'espace
+    for (int i = ind; i < *nbr - 1; i++) {
+        tab[i] = tab[i + 1];
+    }
+
+    (*nbr)--; // Décrémenter le nombre de colonnes
+
+    return 1; // Suppression réussie
+}
