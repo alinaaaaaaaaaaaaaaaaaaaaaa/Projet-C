@@ -266,3 +266,5 @@ void afficher_titres(COLUMN ** tab,int nbcol){
         printf("Le titre de la colonne à l'indice %d est : %s\n",i,tab[i]->titre);
     }
 }
+
+
