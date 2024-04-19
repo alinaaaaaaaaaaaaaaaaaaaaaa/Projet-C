@@ -159,8 +159,8 @@ void afficher_cdata_lignes(COLUMN ** tab, int nbr,int lim){
 }
 
 
-void afficher_cdata_col(COLUMN ** tab, int nbr){
-    afficher_cdata(tab,nbr);
+void afficher_cdata_col(COLUMN ** tab, int lim){
+    afficher_cdata(tab,lim);
 }
 
 int ajouter_ligne(COLUMN ** tab, int nbr){
@@ -268,3 +268,57 @@ void afficher_titres(COLUMN ** tab,int nbcol){
 }
 
 
+void afficher_nb_lignes(COLUMN ** tab){
+    printf("Ce CdataFrame contient %d lignes.\n",(*tab)->taille_log+1);
+}
+
+void afficher_nb_col(int nbr){
+    printf("Ce CdataFrame contient %d colonnes.\n",nbr);
+}
+
+
+int occ_val_cdata(COLUMN ** tab,int nbcol,int val){ //nbr=nbcol
+    int cpt = 0;
+    for(int i=0;i<nbcol;i++){ //parcours les col
+        for (int j=0;j<tab[i]->taille_log;j++){ //parcours les lig
+            if (tab[i]->donnees[j]==val)
+            {
+                cpt++;
+            }
+
+        }
+    }
+    return cpt;
+}
+
+int supp_val_cdata(COLUMN ** tab,int nbcol,int val){
+    int cpt = 0;
+    for(int i=0;i<nbcol;i++) {//parcours les col
+        cpt += sup_x(tab[i],val);
+    }
+    return cpt;
+}
+
+int inf_val_cdata(COLUMN ** tab,int nbcol,int val){
+    int cpt = 0;
+    for(int i=0;i<nbcol;i++) {//parcours les col
+        cpt += inf_x(tab[i],val);
+    }
+    return cpt;
+}
+
+void delete_cdata(COLUMN** tab,int nbr){
+    for (int i=0; i < nbr; i++){
+        delete_column(tab[i]);
+    }
+    free(&tab);
+}
+
+void afficher_menu() {
+    printf("Menu :\n");
+    printf("1. Alimentation\n");
+    printf("2. Affichage\n");
+    printf("3. Operations usuelles\n");
+    printf("4. Analyse et statistiques\n");
+    printf("0. Quitter\n");
+}
