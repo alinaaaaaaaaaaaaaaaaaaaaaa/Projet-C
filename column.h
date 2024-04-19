@@ -18,3 +18,4 @@ int sup_x(COLUMN* col, int x);
 int inf_x(COLUMN* col, int x);
 int equal_x(COLUMN * col,int x);
 
+
