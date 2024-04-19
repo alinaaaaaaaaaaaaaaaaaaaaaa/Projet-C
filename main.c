@@ -69,107 +69,7 @@ int main(){
     equal=equal_x(mycol,c);
     printf("Le nombre de valeurs égales à %d est de %d",c,equal);
 
-
-
-
-    int nbr;
-    COLUMN ** tab;
-    printf("Saisir le nombre de colonne du cdata\n");
-    scanf("%d",&nbr);
-    tab = create_cdata(nbr);
-    if (fill_cdata(nbr,tab)) {
-        printf("cdata remplis\n");
-    }else {
-        printf("pas rempli\n");
-    }
-    afficher_cdata(tab,nbr);
-
-    int n;
-    printf("Saisir le nombre de lignes a afficher :\n");
-    scanf("%d",&n);
-    afficher_cdata_lignes(tab,nbr,n);
-
-    if (ajouter_ligne(tab,nbr)) {
-        printf("ligne ajoutee\n");
-    }else {
-        printf("pas ajoutee\n");
-    }
-    afficher_cdata(tab,nbr);
-    int l;
-    printf("Saisir l'indice de la ligne a supprimer :");
-    scanf("%d",&l);
-    if (delete_ligne(tab,nbr,l)) {
-        printf("ligne supprimee\n");
-    }else {
-        printf("pas supprimee\n");
-    }
-    afficher_cdata(tab,nbr);*/
-
-
-    /*if (ajouter_col(tab,nbr)) {
-        printf("colonne ajoutée\n");
-    }else {
-        printf("colonne supprimee\n");
-    }
-    afficher_cdata(tab,nbr);*/
-
-
-    /*int ind;
-    printf("Saisir l'indice de la colonne a supprimer :");
-    scanf("%d",&ind);
-    if (supr_col(tab,&nbr,ind)) {
-        printf("colonne supprimee\n");
-    }else {
-        printf("pas supprimee\n");
-    }
-
-    afficher_cdata(tab,nbr);*/
-
-    /*int indice;
-    printf("Saisir l'indice de la colonne dont le titre doit être modifié :");
-    scanf("%d",&indice);
-    if (renommer_col(tab,indice)) {
-        printf("titre modifié\n");
-    }else {
-        printf("titre non modifié\n");
-    }
-
-    afficher_cdata(tab,nbr);*/
-
-    /*int valeur;
-    printf("Saisir la valeur à trouver si elle existe dans le Cdata :");
-    scanf("%d",&valeur);
-    if (val_existance(tab,nbr,valeur)){
-        printf("valeur existante\n");
-    }else {
-        printf("valeur non existante\n");
-    }*/
-
-
-    /*int pos_col,pos_lig,nv_valeur;
-    printf("Saisir l'indice de la colonne de la valeur à modifié:");
-    scanf("%d",&pos_col);
-    printf("Saisir l'indice de la ligne de la valeur à modifié:");
-    scanf("%d",&pos_lig);
-    printf("Saisir la valeur qui doit remplacer celle à la %d col et %d lig:",pos_col,pos_lig);
-    scanf("%d",&nv_valeur);
-
-    if (remplacer_val(tab,pos_col,pos_lig,nv_valeur,nbr)){
-        printf("valeur modifié avec succès\n");
-    }else {
-        printf("la valeur ne peut être modifié\n");
-    }
-
-    afficher_cdata(tab,nbr);
-    afficher_titres(tab,nbr);
-    int research,nb_inf;
-    printf("Saisir la valeur à trouver si elle existe dans le Cdata :\n");
-    scanf("%d",&research);
-    nb_inf = inf_cdata(tab,nbr,research);
-    printf("le nombre de valeur inferieur a %d est %d\n",research,nb_inf); */
-
-
-
+*/
 
     COLUMN** tab = NULL;
     int nbr_col = 0;
@@ -302,7 +202,7 @@ int main(){
                     case 4:
                         if (tab != NULL) {
                             int index;
-                            printf("Entrez l'indice de la colonne a supprimer : ");
+                            printf("Entrez lindice de la colonne a supprimer : ");
                             scanf("%d", &index);
                             supr_col(tab, &nbr_col, index);
                         } else {
@@ -312,9 +212,11 @@ int main(){
                     case 5:
                         if (tab != NULL) {
                             int index;
-                            printf("Entrez l'indice de la colonne à renommer : ");
+                            printf("Entrez lindice de la colonne a renommer : ");
                             scanf("%d", &index);
                             renommer_col(tab, index);
+                            printf("Le tire a bien ete renomme : ");
+
                         } else {
                             printf("Le CdataFrame nest pas initialise.\n");
                         }
@@ -322,9 +224,13 @@ int main(){
                     case 6:
                         if (tab != NULL) {
                             int val;
-                            printf("Entrez la valeur à rechercher : ");
+                            printf("Entrez la valeur a rechercher : ");
                             scanf("%d", &val);
-                            val_existance(tab, nbr_col, val);
+                            if (val_existance(tab,nbr_col,val)){
+                                printf("Valeur existante\n");
+                                }else {
+                                printf("Valeur non existante\n");
+                            }
                         } else {
                             printf("Le CdataFrame nest pas initialise.\n");
                         }
@@ -332,13 +238,14 @@ int main(){
                     case 7:
                         if (tab != NULL) {
                             int pos_col, pos_lig, new_val;
-                            printf("Entrez la position de la colonne : ");
+                            printf("Entrez l'indice de la colonne : ");
                             scanf("%d", &pos_col);
-                            printf("Entrez la position de la ligne : ");
+                            printf("Entrez l'indice de la ligne : ");
                             scanf("%d", &pos_lig);
-                            printf("Entrez la nouvelle valeur de la colonne %d et ligne %d : ",pos_col,pos_lig);
+                            printf("Entrez la nouvelle valeur de la colonne indice %d et ligne indice %d : ",pos_col,pos_lig);
                             scanf("%d", &new_val);
                             remplacer_val(tab, pos_col, pos_lig, new_val, nbr_col);
+                            printf("La valeur a ete remplace\n");
                         } else {
                             printf("Le CdataFrame nest pas initialise.\n");
                         }
@@ -352,6 +259,7 @@ int main(){
                         break;
                     case 0:
                         break;
+
                     default:
                         printf("Choix invalide. Veuillez entrer un nombre entre 0 et 8.\n");
                 }
@@ -386,10 +294,11 @@ int main(){
                         break;
                     case 3:
                         if (tab != NULL) {
-                            int val;
+                            int val,nb_occ;
                             printf("Entrez la valeur à rechercher : ");
                             scanf("%d", &val);
-                            occ_val_cdata(tab, nbr_col, val);
+                            nb_occ = occ_val_cdata(tab,nbr_col,val);
+                            printf("le nombre doccurences de %d est %d\n",val,nb_occ);
                         } else {
                             printf("Le CdataFrame nest pas initialise.\n");
                         }
@@ -413,7 +322,7 @@ int main(){
                             nb_inf = inf_val_cdata(tab,nbr_col,val);
                             printf("le nombre de valeur inferieur a %d est %d\n",val,nb_inf); ;
                         } else {
-                            printf("Le CdataFrame n'est pas initialisé.\n");
+                            printf("Le CdataFrame nest pas initialisé.\n");
                         }
                         break;
                     case 0:
@@ -430,14 +339,14 @@ int main(){
         }
     } while (choix != 0);
 
-    /* Libération de la mémoire allouée pour le CdataFrame
+
     if (tab != NULL) {
-        for (int i=0; i < nbr_col; i++){
+        for (int i = 0; i < nbr_col; i++) {
             delete_column(&tab[i]);
         }
         free(tab);
-    }*/
-
+    }
+    printf("Le tableau a ete libere!");
     return 0;
 }
 

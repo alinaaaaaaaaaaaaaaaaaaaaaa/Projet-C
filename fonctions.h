@@ -50,9 +50,9 @@ int occ_val_cdata(COLUMN ** tab,int nbcol,int val);
 int sup_val_cdata(COLUMN ** tab,int nbcol,int val); //supérieur
 int inf_val_cdata(COLUMN ** tab,int nbcol,int val);
 
-
+//En plus
 void afficher_menu();
-void delete_cdata(COLUMN** tab,int nbr);
+void delete_column(COLUMN **col);
 
 
 #endif //CDATAFRAME_ABDEL_ALINA_PP_FONCTIONS_H

@@ -33,10 +33,15 @@ int insert_value(COLUMN* col, int value){
 
 }
 
-void delete_column(COLUMN **col){
-    free((*col)->donnees);
-    free(*col);
+void delete_column(COLUMN **col) {
+    if (col != NULL && *col != NULL) {
+        free((*col)->titre);
+        free((*col)->donnees);
+        free(*col);
+        *col = NULL;
+    }
 }
+
 
 void print_col(COLUMN* col){
     for (int i=0;i<col->taille_log;i++){
@@ -217,19 +222,17 @@ int delete_ligne(COLUMN ** tab, int nbr,int ind) {
 */
 void supr_col(COLUMN ** tab, int* nbr, int ind) {
     if (ind < 0 || ind >= *nbr) {
-        printf("La colonne n'a pas ete supprimee en raison dindice invalide\n");
+        printf("La colonne na pas ete supprimee en raison dindice invalide\n");
     }
 
     delete_column(&tab[ind]); // Supprimer la colonne à l'index ind
-    free(tab[ind]); // Libére la mémoire de la colonne supprimée
 
     for (int i = ind; i < *nbr - 1; i++) {
         tab[i] = tab[i + 1];
     }
 
     (*nbr)--;
-    printf("La colonne a ete supprimee");
-
+    printf("La colonne a ete supprimee\n");
 }
 
 int renommer_col(COLUMN ** tab,int ind){
@@ -263,7 +266,7 @@ int remplacer_val(COLUMN ** tab,int pos_col,int pos_lig,int val,int nbr){
 
 void afficher_titres(COLUMN ** tab,int nbcol){
     for(int i=0;i<nbcol;i++){
-        printf("Le titre de la colonne à l'indice %d est : %s\n",i,tab[i]->titre);
+        printf("Le titre de la colonne à lindice %d est : %s\n",i,tab[i]->titre);
     }
 }
 
@@ -307,12 +310,8 @@ int inf_val_cdata(COLUMN ** tab,int nbcol,int val){
     return cpt;
 }
 
-/*void delete_cdata(COLUMN** tab,int nbr){
-    for (int i=0; i < nbr; i++){
-        delete_column(&tab[i]);
-    }
-    free(&tab);
-}*/
+
+
 
 void afficher_menu() {
     printf("Menu :\n");
