@@ -2,11 +2,10 @@
 #include "fonctions.h"
 #include <stdlib.h>
 
-
-
 int main(){
 
-  /*  printf("hello world\n");
+    //Partie sur la colonne
+    /*printf("hello world\n");
     COLUMN * mycol ;
     mycol = create_column("My column");
     printf("%s %d\n",mycol ->titre,mycol->taille_ph);
@@ -70,7 +69,7 @@ int main(){
     printf("Le nombre de valeurs égales à %d est de %d",c,equal);
 
 */
-
+    //Partie sur le CDataframe
     COLUMN** tab = NULL;
     int nbr_col = 0;
     int choix;
