@@ -197,7 +197,7 @@ int main(){
                                     tab = create_cdata(nbr_col);
                                     printf("Le CdataFrame vide a ete cree.\n");
                                 } else {
-                                    printf("Le CdataFrame est déjà initialisé.\n");
+                                    printf("Le CdataFrame est deja initialise.\n");
                                 }
                                 break;
 
@@ -210,7 +210,7 @@ int main(){
                                 break;
 
                             case 3:
-                                printf("Fonctionnalité a implementer");
+                                printf("Fonctionnalite a implementer");
                                 break;
 
                             case 0 :
@@ -219,7 +219,7 @@ int main(){
                         }
                     } while (choix_alim>0 && choix_alim<=3  );
                 } else {
-                    printf("Le CdataFrame est déjà initialisé.\n");
+                    printf("Le CdataFrame nest pas initialise.\n");
                 }
                 break;
             case 2:
@@ -228,7 +228,7 @@ int main(){
                     int n;
                     do {
                         printf("Affichage\n");
-                        printf("1. Afficher tout le CDataframe\n2. Afficher une partie des lignes du CDataframe selon une limite fournie par l’utilisateur\n3. Afficher une partie des colonnes du CDataframe selon une limite fournie par l’utilisateur\n0. Retour\n ");
+                        printf("1. Afficher tout le CDataframe\n2. Afficher une partie des lignes du CDataframe selon une limite fournie par lutilisateur\n3. Afficher une partie des colonnes du CDataframe selon une limite fournie par lutilisateur\n0. Retour\n ");
                         printf("Entrez votre choix : ");
                         scanf("%d", &choix_aff);
                         switch (choix_aff) {
@@ -254,17 +254,17 @@ int main(){
                         }
                     } while (choix_aff<0 || choix_aff >3  );
                 } else {
-                    printf("Le CdataFrame n'est pas initialisé.\n");
+                    printf("Le CdataFrame nest pas initialise.\n");
                 }
                 break;
             case 3:
-                printf("Opérations usuelles :\n");
+                printf("Operations usuelles :\n");
                 printf("1. Ajouter une ligne\n");
                 printf("2. Supprimer une ligne\n");
                 printf("3. Ajouter une colonne\n"); // En cours
                 printf("4. Supprimer une colonne\n");
                 printf("5. Renommer une colonne\n");
-                printf("6. Vérifier l'existence d'une valeur\n");
+                printf("6. Verifier lexistence dune valeur\n");
                 printf("7. Remplacer une valeur\n");
                 printf("8. Afficher les titres des colonnes\n");
                 printf("0. Retour\n");
@@ -278,17 +278,17 @@ int main(){
                         if (tab != NULL) {
                             ajouter_ligne(tab, nbr_col);
                         } else {
-                            printf("Le CdataFrame n'est pas initialisé.\n");
+                            printf("Le CdataFrame nest pas initialise.\n");
                         }
                         break;
                     case 2:
                         if (tab != NULL) {
                             int index;
-                            printf("Entrez l'indice de la ligne à supprimer : ");
+                            printf("Entrez lindice de la ligne a supprimer : ");
                             scanf("%d", &index);
                             delete_ligne(tab, nbr_col, index);
                         } else {
-                            printf("Le CdataFrame n'est pas initialisé.\n");
+                            printf("Le CdataFrame nest pas initialise.\n");
                         }
                         break;
                     case 3:
@@ -296,17 +296,17 @@ int main(){
                             //ajouter_col(tab, nbr_col); à modifier
                             continue;
                         } else {
-                            printf("Le CdataFrame n'est pas initialisé.\n");
+                            printf("Le CdataFrame nest pas initialise.\n");
                         }
                         break;
                     case 4:
                         if (tab != NULL) {
                             int index;
-                            printf("Entrez l'indice de la colonne à supprimer : ");
+                            printf("Entrez l'indice de la colonne a supprimer : ");
                             scanf("%d", &index);
                             supr_col(tab, &nbr_col, index);
                         } else {
-                            printf("Le CdataFrame n'est pas initialisé.\n");
+                            printf("Le CdataFrame nest pas initialise.\n");
                         }
                         break;
                     case 5:
@@ -316,7 +316,7 @@ int main(){
                             scanf("%d", &index);
                             renommer_col(tab, index);
                         } else {
-                            printf("Le CdataFrame n'est pas initialisé.\n");
+                            printf("Le CdataFrame nest pas initialise.\n");
                         }
                         break;
                     case 6:
@@ -326,7 +326,7 @@ int main(){
                             scanf("%d", &val);
                             val_existance(tab, nbr_col, val);
                         } else {
-                            printf("Le CdataFrame n'est pas initialisé.\n");
+                            printf("Le CdataFrame nest pas initialise.\n");
                         }
                         break;
                     case 7:
@@ -340,14 +340,14 @@ int main(){
                             scanf("%d", &new_val);
                             remplacer_val(tab, pos_col, pos_lig, new_val, nbr_col);
                         } else {
-                            printf("Le CdataFrame n'est pas initialisé.\n");
+                            printf("Le CdataFrame nest pas initialise.\n");
                         }
                         break;
                     case 8:
                         if (tab != NULL) {
                             afficher_titres(tab, nbr_col);
                         } else {
-                            printf("Le CdataFrame n'est pas initialisé.\n");
+                            printf("Le CdataFrame nest pas initialise.\n");
                         }
                         break;
                     case 0:
@@ -374,14 +374,14 @@ int main(){
                         if (tab != NULL) {
                             afficher_nb_lignes(tab);
                         } else {
-                            printf("Le CdataFrame n'est pas initialisé.\n");
+                            printf("Le CdataFrame nest pas initialise.\n");
                         }
                         break;
                     case 2:
                         if (tab != NULL) {
                             afficher_nb_col(nbr_col);
                         } else {
-                            printf("Le CdataFrame n'est pas initialisé.\n");
+                            printf("Le CdataFrame nest pas initialise.\n");
                         }
                         break;
                     case 3:
@@ -391,7 +391,7 @@ int main(){
                             scanf("%d", &val);
                             occ_val_cdata(tab, nbr_col, val);
                         } else {
-                            printf("Le CdataFrame n'est pas initialisé.\n");
+                            printf("Le CdataFrame nest pas initialise.\n");
                         }
                         break;
                     case 4:
@@ -402,7 +402,7 @@ int main(){
                             nb_sup = sup_val_cdata(tab,nbr_col,val);
                             printf("le nombre de valeur supérieur a %d est %d\n",val,nb_sup); ;
                         } else {
-                            printf("Le CdataFrame n'est pas initialisé.\n");
+                            printf("Le CdataFrame nest pas initialise.\n");
                         }
                         break;
                     case 5:

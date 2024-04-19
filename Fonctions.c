@@ -60,7 +60,7 @@ int pos_x(COLUMN* col, int x) {
     if (x >= 0 && x < col->taille_log) {
         return col->donnees[x];
     } else {
-        return NULL;
+        return -1;
     }
 }
 
@@ -166,7 +166,7 @@ void afficher_cdata_col(COLUMN ** tab, int lim){
 int ajouter_ligne(COLUMN ** tab, int nbr){
     int val,test;
     for (int i = 0;i<nbr;i++){
-        printf("Saisir la valeur a ajouté a la derniere position de la colonne %d\n",i+1);
+        printf("Saisir la valeur a ajoute a la derniere position de la colonne %d\n",i+1);
         scanf("%d",&val);
         test = insert_value(tab[i],val);
     }
@@ -215,12 +215,12 @@ int delete_ligne(COLUMN ** tab, int nbr,int ind) {
     return test;
 }
 */
-int supr_col(COLUMN ** tab, int* nbr, int ind) {
+void supr_col(COLUMN ** tab, int* nbr, int ind) {
     if (ind < 0 || ind >= *nbr) {
-        return 0;
+        printf("La colonne n'a pas ete supprimee en raison dindice invalide\n");
     }
 
-    delete_column(tab[ind]); // Supprimer la colonne à l'index ind
+    delete_column(&tab[ind]); // Supprimer la colonne à l'index ind
     free(tab[ind]); // Libére la mémoire de la colonne supprimée
 
     for (int i = ind; i < *nbr - 1; i++) {
@@ -228,8 +228,8 @@ int supr_col(COLUMN ** tab, int* nbr, int ind) {
     }
 
     (*nbr)--;
+    printf("La colonne a ete supprimee");
 
-    return 1; // Suppression réussie
 }
 
 int renommer_col(COLUMN ** tab,int ind){
@@ -291,7 +291,7 @@ int occ_val_cdata(COLUMN ** tab,int nbcol,int val){ //nbr=nbcol
     return cpt;
 }
 
-int supp_val_cdata(COLUMN ** tab,int nbcol,int val){
+int sup_val_cdata(COLUMN ** tab,int nbcol,int val){
     int cpt = 0;
     for(int i=0;i<nbcol;i++) {//parcours les col
         cpt += sup_x(tab[i],val);

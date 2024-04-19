@@ -36,7 +36,7 @@ int ajouter_ligne(COLUMN ** tab, int nbr);
 int delete_ligne(COLUMN ** tab, int nbr,int ind);
 //int ajouter_col(COLUMN ** tab,int nbr);// A Implementer
 
-int supr_col(COLUMN ** tab, int* nbr,int ind);
+void supr_col(COLUMN ** tab, int* nbr,int ind);
 int renommer_col(COLUMN ** tab,int ind);
 int val_existance(COLUMN ** tab,int nbcol,int val);
 int remplacer_val(COLUMN ** tab,int pos_col,int pos_lig,int val,int nbr);
