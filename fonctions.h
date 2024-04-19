@@ -47,26 +47,12 @@ void afficher_titres(COLUMN ** tab,int nbcol);
 void afficher_nb_lignes(COLUMN ** tab);
 void afficher_nb_col(int nbr);
 int occ_val_cdata(COLUMN ** tab,int nbcol,int val);
-int supp_val_cdata(COLUMN ** tab,int nbcol,int val);
+int sup_val_cdata(COLUMN ** tab,int nbcol,int val); //supérieur
 int inf_val_cdata(COLUMN ** tab,int nbcol,int val);
 
 
 void afficher_menu();
 void delete_cdata(COLUMN** tab,int nbr);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #endif //CDATAFRAME_ABDEL_ALINA_PP_FONCTIONS_H

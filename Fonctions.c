@@ -307,12 +307,12 @@ int inf_val_cdata(COLUMN ** tab,int nbcol,int val){
     return cpt;
 }
 
-void delete_cdata(COLUMN** tab,int nbr){
+/*void delete_cdata(COLUMN** tab,int nbr){
     for (int i=0; i < nbr; i++){
-        delete_column(tab[i]);
+        delete_column(&tab[i]);
     }
     free(&tab);
-}
+}*/
 
 void afficher_menu() {
     printf("Menu :\n");

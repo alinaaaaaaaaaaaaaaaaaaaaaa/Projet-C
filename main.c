@@ -83,7 +83,7 @@ int main(){
         printf("pas rempli\n");
     }
     afficher_cdata(tab,nbr);
-/*
+
     int n;
     printf("Saisir le nombre de lignes a afficher :\n");
     scanf("%d",&n);
@@ -261,17 +261,18 @@ int main(){
                 printf("Opérations usuelles :\n");
                 printf("1. Ajouter une ligne\n");
                 printf("2. Supprimer une ligne\n");
-                printf("3. Ajouter une colonne\n");
+                printf("3. Ajouter une colonne\n"); // En cours
                 printf("4. Supprimer une colonne\n");
                 printf("5. Renommer une colonne\n");
                 printf("6. Vérifier l'existence d'une valeur\n");
                 printf("7. Remplacer une valeur\n");
                 printf("8. Afficher les titres des colonnes\n");
-                // Ajoutez d'autres options si nécessaire
                 printf("0. Retour\n");
+
                 int choix_operations;
                 printf("Entrez votre choix : ");
                 scanf("%d", &choix_operations);
+
                 switch (choix_operations) {
                     case 1:
                         if (tab != NULL) {
@@ -292,7 +293,7 @@ int main(){
                         break;
                     case 3:
                         if (tab != NULL) {
-                            //ajouter_col(tab, nbr_col);
+                            //ajouter_col(tab, nbr_col); à modifier
                             continue;
                         } else {
                             printf("Le CdataFrame n'est pas initialisé.\n");
@@ -335,7 +336,7 @@ int main(){
                             scanf("%d", &pos_col);
                             printf("Entrez la position de la ligne : ");
                             scanf("%d", &pos_lig);
-                            printf("Entrez la nouvelle valeur : ");
+                            printf("Entrez la nouvelle valeur de la colonne %d et ligne %d : ",pos_col,pos_lig);
                             scanf("%d", &new_val);
                             remplacer_val(tab, pos_col, pos_lig, new_val, nbr_col);
                         } else {
@@ -360,13 +361,14 @@ int main(){
                 printf("1. Afficher le nombre de lignes\n");
                 printf("2. Afficher le nombre de colonnes\n");
                 printf("3. Occurrence d'une valeur\n");
-                printf("4. Supprimer une valeur\n");
+                printf("4. Supprerieur à une valeur\n");
                 printf("5. Inférieures à une valeur\n");
-                // Ajoutez d'autres options si nécessaire
                 printf("0. Retour\n");
+
                 int choix_analyse;
                 printf("Entrez votre choix : ");
                 scanf("%d", &choix_analyse);
+
                 switch (choix_analyse) {
                     case 1:
                         if (tab != NULL) {
@@ -394,20 +396,22 @@ int main(){
                         break;
                     case 4:
                         if (tab != NULL) {
-                            int val;
-                            printf("Entrez la valeur à supprimer : ");
+                            int val,nb_sup;
+                            printf("Entrez la valeur seuil : ");
                             scanf("%d", &val);
-                            supp_val_cdata(tab, nbr_col, val);
+                            nb_sup = sup_val_cdata(tab,nbr_col,val);
+                            printf("le nombre de valeur supérieur a %d est %d\n",val,nb_sup); ;
                         } else {
                             printf("Le CdataFrame n'est pas initialisé.\n");
                         }
                         break;
                     case 5:
                         if (tab != NULL) {
-                            int val;
+                            int val,nb_inf;
                             printf("Entrez la valeur seuil : ");
                             scanf("%d", &val);
-                            inf_val_cdata(tab, nbr_col, val);
+                            nb_inf = inf_val_cdata(tab,nbr_col,val);
+                            printf("le nombre de valeur inferieur a %d est %d\n",val,nb_inf); ;
                         } else {
                             printf("Le CdataFrame n'est pas initialisé.\n");
                         }
@@ -426,13 +430,13 @@ int main(){
         }
     } while (choix != 0);
 
-    // Libération de la mémoire allouée pour le CdataFrame
+    /* Libération de la mémoire allouée pour le CdataFrame
     if (tab != NULL) {
         for (int i=0; i < nbr_col; i++){
             delete_column(&tab[i]);
         }
         free(tab);
-    }
+    }*/
 
     return 0;
 }
