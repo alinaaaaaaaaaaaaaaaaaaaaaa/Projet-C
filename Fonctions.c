@@ -311,8 +311,6 @@ int inf_val_cdata(COLUMN ** tab,int nbcol,int val){
 }
 
 
-
-
 void afficher_menu() {
     printf("Menu :\n");
     printf("1. Alimentation\n");

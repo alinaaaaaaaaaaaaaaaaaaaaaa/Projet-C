@@ -52,8 +52,6 @@ int inf_val_cdata(COLUMN ** tab,int nbcol,int val);
 
 //En plus
 void afficher_menu();
-void delete_column(COLUMN **col);
-
 
 #endif //CDATAFRAME_ABDEL_ALINA_PP_FONCTIONS_H
 
