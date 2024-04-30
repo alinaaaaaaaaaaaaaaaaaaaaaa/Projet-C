@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "fonctions.h"
+#include "cdataframe.h"
 #include <stdlib.h>
 
 int main(){
@@ -37,11 +37,11 @@ int main(){
       int pos;
       scanf("%d",&z);
       pos=pos_x(mycol,z);
-      if (pos!= NULL) {
+     /* if (pos!= NULL) {
           printf("La valeur a la position %d est : %d\n", z, pos);
       } else {
           printf("La position %d est en dehors des limites de la colonne.\n", z);
-      }
+      } */
 
       printf("Saisir une valeur:\n");
       int a;
