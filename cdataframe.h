@@ -42,3 +42,4 @@ int inf_val_cdata(COLUMN ** tab,int nbcol,int val);
 void afficher_menu();
 void delete_column(COLUMN **col);
 
+

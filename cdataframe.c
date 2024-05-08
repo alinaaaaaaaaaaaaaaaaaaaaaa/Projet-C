@@ -219,3 +219,4 @@ void afficher_menu() {
     printf("4. Analyse et statistiques\n");
     printf("0. Quitter\n");
 }
+
