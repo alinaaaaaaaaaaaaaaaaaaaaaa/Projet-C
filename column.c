@@ -104,3 +104,5 @@ int equal_x(COLUMN * col,int x){
 }
 
 
+
+
