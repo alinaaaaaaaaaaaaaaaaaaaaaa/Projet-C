@@ -98,13 +98,13 @@ int main() {
                                 }
                                 break;
 
-                              case 2:
-                                  if (fill_cdata(nbr_col,tab)) {
-                                      printf("Le CdataFrame a ete remplis\n");
-                                  }else {
-                                      printf("Le CdataFrame n'a pas ete remplis\n");
-                                  }
-                                  break;
+                            case 2:
+                                if (fill_cdata(cdata)) {
+                                    printf("Le CdataFrame a ete remplis\n");
+                                } else {
+                                    printf("Le CdataFrame n'a pas ete remplis\n");
+                                }
+                                break;
 
                             case 3:
                                 remplissage_en_dur(cdata);

@@ -18,9 +18,9 @@ int fill_cdata(CDATAFRAME* cdata);
 void remplissage_en_dur(CDATAFRAME* cdata);
 
 //2.Affichage
-void afficher_cdata (COLUMN ** tab,int nbr);
-void afficher_cdata_lignes(COLUMN ** tab, int nbr,int lim);
-void afficher_cdata_col(COLUMN ** tab, int nbr);
+void afficher_cdata (CDATAFRAME* cdata);
+void afficher_cdata_lignes(CDATAFRAME* cdata,int lim);
+void afficher_cdata_col(CDATAFRAME* cdata, int lim);
 
 //3.Opération usuelles
 int ajouter_ligne(CDATAFRAME* cdata);

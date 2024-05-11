@@ -81,11 +81,12 @@ void afficher_cdata (CDATAFRAME* cdata){
     }
 }
 
-void afficher_cdata_lignes(COLUMN ** tab, int nbr,int lim){
-    for (int i = 0;i<nbr;i++){
-        printf("%s\n",tab[i]->titre);
+
+void afficher_cdata_lignes(CDATAFRAME* cdata,int lim){ //modifier affichage
+    for (int i = 0;i<cdata->nombre_elem;i++){
+        printf("%s\n",cdata->columns[i]->titre);
         for (int j=0;j<lim;j++){
-            printf("[%d] %d\n",j,tab[i]->donnees[j]);
+            printf("[%d] %d\n",j,cdata->columns[i]->donnees[j]);
         }
         printf("==============================================\n");
     }
@@ -152,10 +153,10 @@ int ajouter_col(CDATAFRAME* cdata){
         test = insert_value(cdata->columns[cdata->nombre_elem], val);
     }
     return test;
-}
-*/
-void supr_col(COLUMN ** tab, int* nbr, int ind) {
-    if (ind < 0 || ind >= *nbr) {
+} */
+
+void supr_col(CDATAFRAME* cdata, int ind) {
+    if (ind < 0 || ind >= cdata->nombre_elem) {
         printf("La colonne na pas ete supprimee en raison dindice invalide\n");
     }
 
@@ -243,6 +244,7 @@ int inf_val_cdata(CDATAFRAME* cdata,int val){
     }
     return cpt;
 }
+
 
 
 void afficher_menu() {
