@@ -15,8 +15,7 @@ typedef struct {
 //1.Alimentation
 CDATAFRAME * create_cdata(int nbr);
 int fill_cdata(CDATAFRAME* cdata);
-void remplissage_en_dur(CDATAFRAME* cdata);
-
+CDATAFRAME * remplissage_en_dur(CDATAFRAME ** cdata);
 //2.Affichage
 void afficher_cdata (CDATAFRAME* cdata);
 void afficher_cdata_lignes(CDATAFRAME* cdata,int lim);
@@ -25,10 +24,10 @@ void afficher_cdata_col(CDATAFRAME* cdata, int lim);
 //3.Opération usuelles
 int ajouter_ligne(CDATAFRAME* cdata);
 int delete_ligne(CDATAFRAME* cdata,int ind);
-//int ajouter_col(COLUMN ** tab,int nbr);// A Implementer
+int ajouter_col(CDATAFRAME** cdata);
 
 void supr_col(CDATAFRAME* cdata, int ind);
-int renommer_col(CDATAFRAME* cdata,int ind);
+void renommer_col(CDATAFRAME* cdata,int ind);
 int val_existance(CDATAFRAME* cdata,int val);
 int remplacer_val(CDATAFRAME* cdata,int pos_col,int pos_lig,int val);
 void afficher_titres(CDATAFRAME* cdata,int nbcol);
@@ -44,6 +43,7 @@ int inf_val_cdata(CDATAFRAME* cdata,int val);
 //En plus
 void afficher_menu();
 void delete_column(COLUMN **col);
+
 
 
 

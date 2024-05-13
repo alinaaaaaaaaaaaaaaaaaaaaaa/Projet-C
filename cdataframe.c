@@ -45,60 +45,76 @@ int fill_cdata(CDATAFRAME* cdata) {
     return test;
 }
 
-void remplissage_en_dur(CDATAFRAME* cdata){
+CDATAFRAME * remplissage_en_dur(CDATAFRAME ** cdata){
+    *cdata = create_cdata(3);
 
-    cdata->nombre_elem = 3; // Nombre arbitraire
-    cdata->columns = (COLUMN**)malloc(3 * sizeof(COLUMN*));
-    if (cdata->columns == NULL) {
-        printf("Erreur lors de l'allocation de mémoire pour les colonnes du CDATAFRAME.\n");
-        return ;
-    }
 
-    // Création et remplissage des colonnes
+    // Remplissage des titres de colonne
+    (*cdata)->columns[0] = create_column("col1");
+    (*cdata)->columns[1] = create_column("col2");
+    (*cdata)->columns[2] = create_column("col3");
+
+
+    // Remplissage des valeurs
     for (int i = 0; i < 3; i++) {
-        char titre[20];
-        sprintf(titre, "Colonne %d", i + 1);
-        cdata->columns[i] = create_column(titre);
-        if (cdata->columns[i] == NULL) {
-            printf("Erreur lors de la création de la colonne %d.\n", i + 1);
-            return ;
-        }
         for (int j = 0; j < 3; j++) {
-            if (!insert_value(cdata->columns[i], (i + 1) * (j + 1))) {
+            if (!insert_value((*cdata)->columns[i], i + j)) {
                 printf("Erreur lors de l'insertion de la valeur dans la colonne %d.\n", i + 1);
-                return;
             }
         }
     }
-    return;
+    return *cdata;
 }
 
+
 void afficher_cdata (CDATAFRAME* cdata){
-    for (int i = 0;i<cdata->nombre_elem;i++){
-        printf("%s\n",cdata->columns[i]->titre);
-        print_col(cdata->columns[i]); // *(cdata->columns+i)
-        printf("==============================================\n");
+    printf("==============================================\n");
+    for (int i = 0;i<cdata->nombre_elem;i++) {
+        printf(" %s      ", cdata->columns[i]->titre);
     }
+    printf("\n");
+    for (int i = 0;i<cdata->nombre_elem;i++) {
+        for (int j = 0; j < cdata->nombre_elem; j++) {
+            printf(" [%d] %d     ", i, cdata->columns[j]->donnees[i]);
+        }
+        printf("\n");
+    }
+
+    printf("\n==============================================\n");
 }
 
 
 void afficher_cdata_lignes(CDATAFRAME* cdata,int lim){ //modifier affichage
-    for (int i = 0;i<cdata->nombre_elem;i++){
-        printf("%s\n",cdata->columns[i]->titre);
-        for (int j=0;j<lim;j++){
-            printf("[%d] %d\n",j,cdata->columns[i]->donnees[j]);
-        }
-        printf("==============================================\n");
+    printf("==============================================\n");
+    for (int i = 0;i<cdata->nombre_elem;i++) {
+        printf(" %s      ", cdata->columns[i]->titre);
     }
+    printf("\n");
+    for (int i = 0;i<lim;i++) {
+        for (int j = 0; j < cdata->nombre_elem; j++) {
+            printf(" [%d] %d     ", i, cdata->columns[j]->donnees[i]);
+        }
+        printf("\n");
+    }
+
+    printf("\n==============================================\n");
 }
 
 
 void afficher_cdata_col(CDATAFRAME* cdata, int lim){
-    for (int i = 0;i<lim;i++){
-        printf("%s\n",cdata->columns[i]->titre);
-        print_col(cdata->columns[i]); // *(cdata->columns+i)
-        printf("==============================================\n");
+    printf("==============================================\n");
+    for (int i = 0;i<lim;i++) {
+        printf(" %s      ", cdata->columns[i]->titre);
     }
+    printf("\n");
+    for (int i = 0;i<cdata->nombre_elem;i++) {
+        for (int j = 0; j < lim; j++) {
+            printf(" [%d] %d     ", i, cdata->columns[j]->donnees[i]);
+        }
+        printf("\n");
+    }
+
+    printf("\n==============================================\n");
 }
 
 
@@ -132,28 +148,59 @@ int delete_ligne(CDATAFRAME* cdata,int ind) {
     }
 
 }
-/*
-int ajouter_col(CDATAFRAME* cdata){
-    char titre [100];
-    cdata->columns = realloc(cdata->columns,cdata->nombre_elem +1);
+
+// ici
+
+int ajouter_col(CDATAFRAME** cdata) {
+    // Allocation mémoire pour une colonne supplémentaire
+    (*cdata)->columns = realloc((*cdata)->columns, ((*cdata)->nombre_elem + 1) * sizeof(COLUMN*));
+    if ((*cdata)->columns == NULL) {
+        printf("Erreur lors de l'allocation de mémoire pour la nouvelle colonne.\n");
+        return 0;
+    }
+
+    // Saisie du titre de la nouvelle colonne
+    char titre[100];
     printf("Saisir le titre de la nouvelle colonne :\n");
-    scanf("%s",titre);
-    cdata->columns[cdata->nombre_elem] = create_column(titre);
-    cdata->columns[cdata->nombre_elem]->taille_log = cdata->columns[cdata->nombre_elem-1]->taille_log;
-    cdata->columns[cdata->nombre_elem]->taille_ph = cdata->columns[cdata->nombre_elem-1]->taille_ph;
+    scanf("%s", titre);
 
+    // Création de la nouvelle colonne avec le titre saisi
+    (*cdata)->columns[(*cdata)->nombre_elem] = create_column(titre);
+    if ((*cdata)->columns[(*cdata)->nombre_elem] == NULL) {
+        printf("Erreur lors de la création de la nouvelle colonne.\n");
+        return 0;
+    }
 
-    int test;
+    // Copie des tailles logiques et physiques de la dernière colonne
+    if ((*cdata)->nombre_elem > 0) {
+        (*cdata)->columns[(*cdata)->nombre_elem]->taille_log = (*cdata)->columns[(*cdata)->nombre_elem - 1]->taille_log;
+        (*cdata)->columns[(*cdata)->nombre_elem]->taille_ph = (*cdata)->columns[(*cdata)->nombre_elem - 1]->taille_ph;
+    } else {
+        // Si c'est la première colonne, initialisez les tailles à 0
+        (*cdata)->columns[(*cdata)->nombre_elem]->taille_log = 0;
+        (*cdata)->columns[(*cdata)->nombre_elem]->taille_ph = 0;
+    }
 
-    for (int j = 0; j < cdata->nombre_elem; j++) {
+    // Saisie des valeurs pour la nouvelle colonne
+    for (int j = 0; j < (*cdata)->columns[(*cdata)->nombre_elem]->taille_log; j++) {
         int val;
         printf("Saisir la %deme valeur de la nouvelle colonne\n", j + 1);
         scanf("%d", &val);
         // Insérer la valeur dans la colonne
-        test = insert_value(cdata->columns[cdata->nombre_elem], val);
+        if (!insert_value((*cdata)->columns[(*cdata)->nombre_elem], val)) {
+            printf("Erreur lors de l'insertion de la valeur dans la nouvelle colonne.\n");
+            return 0;
+        }
     }
-    return test;
-} */
+
+    // Incrémenter le nombre d'éléments (colonnes)
+    (*cdata)->nombre_elem++;
+
+    return 1;
+}
+
+
+
 
 void supr_col(CDATAFRAME* cdata, int ind) {
     if (ind < 0 || ind >= cdata->nombre_elem) {
@@ -170,11 +217,12 @@ void supr_col(CDATAFRAME* cdata, int ind) {
     printf("La colonne a ete supprimee\n");
 }
 
-int renommer_col(CDATAFRAME* cdata,int ind){
+void renommer_col(CDATAFRAME* cdata,int ind){
     char s[100];
     printf("Saisir le titre de la colonne indice %d :\n",ind);
     scanf("%s",s);
     strcpy(cdata->columns[ind]->titre, s);
+
 }
 
 int val_existance(CDATAFRAME* cdata,int val){ //cdata->nombre_elem=nbcol
@@ -255,5 +303,6 @@ void afficher_menu() {
     printf("4. Analyse et statistiques\n");
     printf("0. Quitter\n");
 }
+
 
 

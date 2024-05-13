@@ -107,7 +107,11 @@ int main() {
                                 break;
 
                             case 3:
-                                remplissage_en_dur(cdata);
+                                cdata = remplissage_en_dur(&cdata);
+                                printf("Le CdataFrame a ete remplis en dur\n");
+                                if (cdata == NULL) {
+                                    printf("Erreur lors de la création du CDATAFRAME.\n");
+                                }
                                 break;
 
                             case 0 :
@@ -132,7 +136,6 @@ int main() {
                             case 1:
                                 afficher_cdata(cdata);
                                 break;
-
 
                             case 2:
                                 printf("Saisir le nombre de lignes a afficher :\n");
@@ -192,7 +195,14 @@ int main() {
                         break;
                     case 3:
                         if (cdata != NULL) {
-                            //ajouter_col(tab, nbr_col); à modifier
+                            int resultat_ajout = ajouter_col(&cdata);
+                            if (resultat_ajout)
+                            {
+                                printf("Colonne bien ajouté!");
+                            }
+                            else {
+                                printf("Impossible à ajouter");
+                            }; //à modifier */
                             continue;
                         } else {
                             printf("Le CdataFrame nest pas initialise.\n");
