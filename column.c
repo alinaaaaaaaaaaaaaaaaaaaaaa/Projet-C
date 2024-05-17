@@ -34,12 +34,11 @@ int insert_value(COLUMN* col, int value){
 
 }
 
-void delete_column(COLUMN **col) {
-    if (col != NULL && *col != NULL) {
-        free((*col)->titre);
-        free((*col)->donnees);
-        free(*col);
-        *col = NULL;
+void delete_column(COLUMN *col) {
+    if ( col != NULL) {
+        free((col)->donnees);
+        free(col);
+
     }
 }
 

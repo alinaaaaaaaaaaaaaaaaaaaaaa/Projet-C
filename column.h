@@ -9,7 +9,7 @@ typedef struct {
 //Fonction prévu pour la gestion de la colonne
 COLUMN * create_column(char * titre);
 int insert_value(COLUMN* col, int value);
-void delete_column(COLUMN **col);
+void delete_column(COLUMN *col);
 void print_col(COLUMN* col);
 
 //4.1.5

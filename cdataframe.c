@@ -336,6 +336,18 @@ int inf_val_cdata(CDATAFRAME* cdata,int val){
     return cpt;
 }
 
+void delete_cdata(CDATAFRAME* cdata){
+    if (cdata != NULL){
+        for (int i = 0; i< cdata->nombre_elem ;i++) {
+            delete_column(cdata->columns[i]);
+        }
+        free(cdata->columns);
+        free(cdata);
+    }
+    else{
+        printf("Le tableau est deja nul");
+    }
+}
 
 
 void afficher_menu() {

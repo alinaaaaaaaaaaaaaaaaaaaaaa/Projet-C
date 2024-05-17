@@ -63,7 +63,6 @@ int main() {
         int equal;
         equal=equal_x(mycol,c);
         printf("Le nombre de valeurs egales à %d est de %d\n",c,equal);
-        //delete_column(&mycol);
    */
  //MENU
     //Partie sur le CDataframe
