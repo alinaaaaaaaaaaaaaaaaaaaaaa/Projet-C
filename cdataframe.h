@@ -50,5 +50,4 @@ void delete_column(COLUMN **col);
 
 
 
-`
 

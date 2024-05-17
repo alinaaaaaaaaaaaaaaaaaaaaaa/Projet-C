@@ -52,6 +52,8 @@ int fill_cdata(CDATAFRAME* cdata) {
 }
 
 CDATAFRAME * remplissage_en_dur(CDATAFRAME ** cdata){
+
+    *cdata = create_empty_cdata();
     *cdata = create_cdata(*cdata,3);
 
 
@@ -74,7 +76,7 @@ CDATAFRAME * remplissage_en_dur(CDATAFRAME ** cdata){
 
 
 void afficher_cdata (CDATAFRAME* cdata){
-    printf("==============================================\n");
+    printf("\n==============================================\n");
     for (int i = 0;i<cdata->nombre_elem;i++) {
         printf("%s\t", cdata->columns[i]->titre);
     }
@@ -98,7 +100,7 @@ void afficher_cdata (CDATAFRAME* cdata){
 
 
 void afficher_cdata_lignes(CDATAFRAME* cdata,int lim){ //modifier affichage
-    printf("==============================================\n");
+    printf("\n==============================================\n");
     for (int i = 0;i<cdata->nombre_elem;i++) {
         printf(" %s      ", cdata->columns[i]->titre);
     }
@@ -115,7 +117,7 @@ void afficher_cdata_lignes(CDATAFRAME* cdata,int lim){ //modifier affichage
 
 
 void afficher_cdata_col(CDATAFRAME* cdata, int lim){
-    printf("==============================================\n");
+    printf("\n==============================================\n");
     for (int i = 0;i<lim;i++) {
         printf(" %s      ", cdata->columns[i]->titre);
     }

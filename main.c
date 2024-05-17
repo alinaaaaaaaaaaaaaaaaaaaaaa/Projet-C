@@ -201,10 +201,10 @@ int main() {
                             int resultat_ajout = ajouter_col(cdata,titre);
                             if (resultat_ajout)
                             {
-                                printf("Colonne bien ajouté!");
+                                printf("Colonne bien ajouté!\n");
                             }
                             else {
-                                printf("Impossible à ajouter");
+                                printf("Impossible à ajouter\n");
                             }; //à modifier
                             continue;
                         } else {
