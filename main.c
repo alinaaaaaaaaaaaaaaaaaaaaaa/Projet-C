@@ -5,7 +5,6 @@
 int main() {
 
     /*  //Partie sur la colonne
-      printf("hello world\n");
         COLUMN * mycol ;
         mycol = create_column("My column");
         printf("%s %d\n",mycol ->titre,mycol->taille_ph);
@@ -377,6 +376,7 @@ int main() {
 
 
 }
+
 
 
 
