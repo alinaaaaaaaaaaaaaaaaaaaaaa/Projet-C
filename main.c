@@ -345,6 +345,8 @@ int main() {
                 }
                 break;
             case 0:
+                // ici
+                delete_cdata(cdata);
                 printf("Au revoir !\n");
                 break;
             default:

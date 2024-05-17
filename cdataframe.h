@@ -45,8 +45,7 @@ int inf_val_cdata(CDATAFRAME* cdata,int val);
 
 //En plus
 void afficher_menu();
-void delete_column(COLUMN **col);
-
+void delete_cdata(CDATAFRAME* cdata);
 
 
 

@@ -181,10 +181,17 @@ int ajouter_col (CDATAFRAME * cdata, char * titre) {
         delete_column(c);
         return 0;
     }
-
+    int val ;
     cdata->columns[cdata->nombre_elem] = c;
     cdata->nombre_elem += 1;
 
+    cdata->columns[cdata->nombre_elem-1]->taille_log = cdata->columns[cdata->nombre_elem-2]->taille_log;
+
+    for (int i = 0; i< cdata->columns[0]->taille_log;i++){
+        printf("Saisir la %de valeur a ajoute dans la nouvelle colonne\n",i+1);
+        scanf("%d",&val);
+        insert_value(cdata->columns[cdata->nombre_elem-1], val);
+    }
     // eventuellement remplir
 
     return 1;
