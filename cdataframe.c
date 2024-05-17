@@ -197,53 +197,6 @@ int ajouter_col (CDATAFRAME * cdata, char * titre) {
     return 1;
 }
 
-int ajouter_col_old(CDATAFRAME** cdata) {
-    // Allocation mémoire pour un poniteur sur colonne supplémentaire
-    (*cdata)->columns = realloc((*cdata)->columns, ((*cdata)->nombre_elem + 1) * sizeof(COLUMN*));
-
-    if ((*cdata)->columns == NULL) {
-        printf("Allocation mémoire pour un poniteur sur colonne supplémentaire\n");
-        return 0;
-    }
-
-    // Saisie du titre de la nouvelle colonne
-    char titre[100];
-    printf("Saisir le titre de la nouvelle colonne :\n");
-    scanf("%s", titre);
-
-    // Création de la nouvelle colonne avec le titre saisi
-    (*cdata)->columns[(*cdata)->nombre_elem] = create_column(titre);
-    if ((*cdata)->columns[(*cdata)->nombre_elem] == NULL) {
-        printf("Erreur lors de la création de la nouvelle colonne.\n");
-        return 0;
-    }
-
-    // Copie des tailles logiques et physiques de la dernière colonne
-
-    (*cdata)->columns[(*cdata)->nombre_elem]->taille_log = (*cdata)->columns[(*cdata)->nombre_elem - 1]->taille_log;
-    (*cdata)->columns[(*cdata)->nombre_elem]->taille_ph = (*cdata)->columns[(*cdata)->nombre_elem - 1]->taille_ph;
-
-
-    // Saisie des valeurs pour la nouvelle colonne
-    for (int j = 0; j < (*cdata)->columns[(*cdata)->nombre_elem]->taille_log; j++) {
-        int val;
-        printf("Saisir la %deme valeur de la nouvelle colonne\n", j + 1);
-        scanf("%d", &val);
-        // Insérer la valeur dans la colonne
-        if (!insert_value((*cdata)->columns[(*cdata)->nombre_elem], val)) {
-            printf("Erreur lors de l'insertion de la valeur dans la nouvelle colonne.\n");
-            return 0;
-        }
-    }
-
-    // Incrémenter le nombre d'éléments (colonnes)
-    (*cdata)->nombre_elem++;
-
-    return 1;
-}
-
-
-
 
 void supr_col(CDATAFRAME* cdata, int ind) {
     if (ind < 0 || ind >= cdata->nombre_elem) {
