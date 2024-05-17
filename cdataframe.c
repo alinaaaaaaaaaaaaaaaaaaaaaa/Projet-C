@@ -3,14 +3,20 @@
 #include <stdio.h>
 #include <string.h>
 
-CDATAFRAME * create_cdata(int nbr){
-    CDATAFRAME * cdata;
-    cdata = (CDATAFRAME *) malloc(sizeof (CDATAFRAME));
+CDATAFRAME * create_cdata(CDATAFRAME * cdata,int nbr){
     cdata->nombre_elem = nbr;
     cdata->columns = (COLUMN**) malloc(cdata->nombre_elem*sizeof (COLUMN*));
     for (int i=0; i <cdata->nombre_elem;i++){
         cdata->columns[i] = create_column("");
     }
+    return cdata;
+}
+
+CDATAFRAME * create_empty_cdata() {
+    CDATAFRAME * cdata;
+    cdata = (CDATAFRAME *) malloc(sizeof (CDATAFRAME));
+    cdata->nombre_elem = 0;
+    cdata->columns = NULL;
     return cdata;
 }
 
@@ -46,7 +52,7 @@ int fill_cdata(CDATAFRAME* cdata) {
 }
 
 CDATAFRAME * remplissage_en_dur(CDATAFRAME ** cdata){
-    *cdata = create_cdata(3);
+    *cdata = create_cdata(*cdata,3);
 
 
     // Remplissage des titres de colonne
@@ -70,15 +76,22 @@ CDATAFRAME * remplissage_en_dur(CDATAFRAME ** cdata){
 void afficher_cdata (CDATAFRAME* cdata){
     printf("==============================================\n");
     for (int i = 0;i<cdata->nombre_elem;i++) {
-        printf(" %s      ", cdata->columns[i]->titre);
+        printf("%s\t", cdata->columns[i]->titre);
     }
     printf("\n");
-    for (int i = 0;i<cdata->nombre_elem;i++) {
-        for (int j = 0; j < cdata->nombre_elem; j++) {
-            printf(" [%d] %d     ", i, cdata->columns[j]->donnees[i]);
+
+    COLUMN ** data = cdata->columns;
+
+    //int max_ligne = 6; peut-être a enlévé
+    for (int i = 0; i < data[0]->taille_log;++i) {
+        for (int j = 0; j < cdata->nombre_elem; ++j) {
+            printf("%d\t", data[j]->donnees[i]);
         }
         printf("\n");
     }
+
+    // afficher sur une même ligne data[j]->donnees[i]
+
 
     printf("\n==============================================\n");
 }
@@ -151,11 +164,36 @@ int delete_ligne(CDATAFRAME* cdata,int ind) {
 
 // ici
 
-int ajouter_col(CDATAFRAME** cdata) {
-    // Allocation mémoire pour une colonne supplémentaire
+int ajouter_col (CDATAFRAME * cdata, char * titre) {
+    COLUMN * c = create_column(titre);
+
+    if (cdata->nombre_elem == 0) {
+        cdata->columns = (COLUMN **) malloc(sizeof(COLUMN *));
+    } else {
+        cdata->columns = (COLUMN **) realloc(cdata->columns, (sizeof (COLUMN *)) * (cdata->nombre_elem + 1));
+    }
+
+    // Si le realloc echoue
+    if (!cdata->columns) {
+        fprintf(stderr, "Ajout de colonne echoue\n");
+        delete_column(c);
+        return 0;
+    }
+
+    cdata->columns[cdata->nombre_elem] = c;
+    cdata->nombre_elem += 1;
+
+    // eventuellement remplir
+
+    return 1;
+}
+
+int ajouter_col_old(CDATAFRAME** cdata) {
+    // Allocation mémoire pour un poniteur sur colonne supplémentaire
     (*cdata)->columns = realloc((*cdata)->columns, ((*cdata)->nombre_elem + 1) * sizeof(COLUMN*));
+
     if ((*cdata)->columns == NULL) {
-        printf("Erreur lors de l'allocation de mémoire pour la nouvelle colonne.\n");
+        printf("Allocation mémoire pour un poniteur sur colonne supplémentaire\n");
         return 0;
     }
 
@@ -172,14 +210,10 @@ int ajouter_col(CDATAFRAME** cdata) {
     }
 
     // Copie des tailles logiques et physiques de la dernière colonne
-    if ((*cdata)->nombre_elem > 0) {
-        (*cdata)->columns[(*cdata)->nombre_elem]->taille_log = (*cdata)->columns[(*cdata)->nombre_elem - 1]->taille_log;
-        (*cdata)->columns[(*cdata)->nombre_elem]->taille_ph = (*cdata)->columns[(*cdata)->nombre_elem - 1]->taille_ph;
-    } else {
-        // Si c'est la première colonne, initialisez les tailles à 0
-        (*cdata)->columns[(*cdata)->nombre_elem]->taille_log = 0;
-        (*cdata)->columns[(*cdata)->nombre_elem]->taille_ph = 0;
-    }
+
+    (*cdata)->columns[(*cdata)->nombre_elem]->taille_log = (*cdata)->columns[(*cdata)->nombre_elem - 1]->taille_log;
+    (*cdata)->columns[(*cdata)->nombre_elem]->taille_ph = (*cdata)->columns[(*cdata)->nombre_elem - 1]->taille_ph;
+
 
     // Saisie des valeurs pour la nouvelle colonne
     for (int j = 0; j < (*cdata)->columns[(*cdata)->nombre_elem]->taille_log; j++) {

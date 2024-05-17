@@ -66,7 +66,7 @@ int main() {
         printf("Le nombre de valeurs egales à %d est de %d\n",c,equal);
         //delete_column(&mycol);
    */
-
+ //MENU
     //Partie sur le CDataframe
     CDATAFRAME *cdata = NULL;
     int nbr_col = 0; // taille_logique
@@ -89,9 +89,7 @@ int main() {
                         switch (choix_alim) {
                             case 1:
                                 if (cdata == NULL) {
-                                    printf("Saisir le nombre de colonne du cdata\n");
-                                    scanf("%d", &nbr_col);
-                                    cdata = create_cdata(nbr_col);
+                                    cdata = create_empty_cdata();
                                     printf("Le CdataFrame vide a ete cree.\n");
                                 } else {
                                     printf("Le CdataFrame est deja initialise.\n");
@@ -99,6 +97,9 @@ int main() {
                                 break;
 
                             case 2:
+                                printf("Saisir le nombre de colonne du cdata\n");
+                                scanf("%d", &nbr_col);
+                                cdata = create_cdata(cdata,nbr_col);
                                 if (fill_cdata(cdata)) {
                                     printf("Le CdataFrame a ete remplis\n");
                                 } else {
@@ -195,14 +196,17 @@ int main() {
                         break;
                     case 3:
                         if (cdata != NULL) {
-                            int resultat_ajout = ajouter_col(&cdata);
+                            char titre[100];
+                            printf("Quel est le titre de la colonne :");
+                            scanf("%s", titre);
+                            int resultat_ajout = ajouter_col(cdata,titre);
                             if (resultat_ajout)
                             {
                                 printf("Colonne bien ajouté!");
                             }
                             else {
                                 printf("Impossible à ajouter");
-                            }; //à modifier */
+                            }; //à modifier
                             continue;
                         } else {
                             printf("Le CdataFrame nest pas initialise.\n");
@@ -351,7 +355,23 @@ int main() {
         }
     } while (choix != 0);
 
+/* rado
 
+    CDATAFRAME * cdata = create_empty_cdata();
+    ajouter_col(cdata, "titre1");
+    ajouter_col(cdata, "titre2");
+
+    // Remplir le cdataframe
+    for (int j = 0; j < 2; ++j) {
+        for (int i = 0; i < 6; ++i) {
+            insert_value(cdata->columns[j], i);
+        }
+    }
+
+    afficher_cdata(cdata);
+
+
+*/
 
     return 0;
 

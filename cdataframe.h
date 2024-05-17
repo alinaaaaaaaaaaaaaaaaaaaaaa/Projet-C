@@ -13,7 +13,8 @@ typedef struct {
 
 //Fonction de gestion du CDataFrame
 //1.Alimentation
-CDATAFRAME * create_cdata(int nbr);
+CDATAFRAME * create_cdata(CDATAFRAME * cdata,int nbr);
+CDATAFRAME * create_empty_cdata();
 int fill_cdata(CDATAFRAME* cdata);
 CDATAFRAME * remplissage_en_dur(CDATAFRAME ** cdata);
 //2.Affichage
@@ -24,7 +25,9 @@ void afficher_cdata_col(CDATAFRAME* cdata, int lim);
 //3.Opération usuelles
 int ajouter_ligne(CDATAFRAME* cdata);
 int delete_ligne(CDATAFRAME* cdata,int ind);
-int ajouter_col(CDATAFRAME** cdata);
+
+// crée une nouvelle colonne dont le titre est "titre" et l'ajoute dans cdata
+int ajouter_col(CDATAFRAME* cdata, char * titre);
 
 void supr_col(CDATAFRAME* cdata, int ind);
 void renommer_col(CDATAFRAME* cdata,int ind);
