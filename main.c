@@ -4,7 +4,8 @@
 
 int main() {
 
-    /*  //Partie sur la colonne
+    //Partie sur la colonne
+/*
         COLUMN * mycol ;
         mycol = create_column("My column");
         printf("%s %d\n",mycol ->titre,mycol->taille_ph);
@@ -63,8 +64,58 @@ int main() {
         int equal;
         equal=equal_x(mycol,c);
         printf("Le nombre de valeurs egales à %d est de %d\n",c,equal);
-   */
- //MENU
+
+
+        // Parties avancées sur les colonnes
+
+    COLUMN *mycol;
+    mycol = create_column("My column");
+    printf("%s %d\n", mycol->titre, mycol->taille_ph);
+
+
+    insert_value(mycol, 5);
+    insert_value(mycol, 52);
+    insert_value(mycol, 15);
+    insert_value(mycol, 44);
+    printf("Voici le tableau non trié : \n");
+
+    print_col(mycol);
+
+        int sortdir;
+    int valid_index;
+    printf("Choisir comment vous voulez trier votre tableau. \n0: Ascendent \n1: Descendent :\n");
+    scanf("%d",&sortdir);
+    printf("Votre colonne est :\n0 : Non triee \n-1 : Partiellement triee \n1 : Trie \n");
+    scanf("%d",&valid_index);
+    mycol->valid_index = valid_index;
+    sort(mycol,  sortdir);
+
+
+    printf("Voici le tableau index :\n");
+    for (int i = 0; i < mycol->taille_log; i++) {
+        printf("[%d] %llu\n", i, mycol->index[i]);
+    }
+
+    printf("Voici le tableau trie si non trie a le origine : \n");
+    print_col_by_index(mycol);
+
+    int val;
+    printf("Choisir la valeur a recherche dans le tableau :\n");
+    scanf("%d",&val);
+
+    if (search_value_in_column(mycol, val) == 1)
+    {
+        printf("La valeur existe dans le tableau !\n");
+    }else{
+        printf("La valeur ne existe pas dans le tableau !\n");
+    }
+
+    erase_index(mycol);
+    free(mycol->donnees);
+    free(mycol);
+    */
+    //MENU
+
     //Partie sur le CDataframe
     CDATAFRAME *cdata = NULL;
     int nbr_col = 0; // taille_logique
@@ -355,23 +406,7 @@ int main() {
         }
     } while (choix != 0);
 
-/* rado
 
-    CDATAFRAME * cdata = create_empty_cdata();
-    ajouter_col(cdata, "titre1");
-    ajouter_col(cdata, "titre2");
-
-    // Remplir le cdataframe
-    for (int j = 0; j < 2; ++j) {
-        for (int i = 0; i < 6; ++i) {
-            insert_value(cdata->columns[j], i);
-        }
-    }
-
-    afficher_cdata(cdata);
-
-
-*/
 
     return 0;
 

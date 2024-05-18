@@ -197,7 +197,6 @@ int ajouter_col (CDATAFRAME * cdata, char * titre) {
     return 1;
 }
 
-
 void supr_col(CDATAFRAME* cdata, int ind) {
     if (ind < 0 || ind >= cdata->nombre_elem) {
         printf("La colonne na pas ete supprimee en raison dindice invalide\n");

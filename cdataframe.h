@@ -1,5 +1,4 @@
 
-
 #include "column.h"
 //On a décide de faire un tableau de pointeurs qui pointes sur chaque colonne du CData
 // Structure cdata
