@@ -15,35 +15,35 @@ typedef struct {
 CDATAFRAME * create_cdata(CDATAFRAME * cdata,int nbr);
 CDATAFRAME * create_empty_cdata();
 int fill_cdata(CDATAFRAME* cdata);
-CDATAFRAME * remplissage_en_dur(CDATAFRAME ** cdata);
+CDATAFRAME * auto_fill(CDATAFRAME * cdata);
 //2.Affichage
-void afficher_cdata (CDATAFRAME* cdata);
-void afficher_cdata_lignes(CDATAFRAME* cdata,int lim);
-void afficher_cdata_col(CDATAFRAME* cdata, int lim);
+void print_cdata (CDATAFRAME* cdata);
+void print_cdata_lines(CDATAFRAME* cdata,int lim);
+void print_cdata_col(CDATAFRAME* cdata, int lim);
 
 //3.Opération usuelles
-int ajouter_ligne(CDATAFRAME* cdata);
-int delete_ligne(CDATAFRAME* cdata,int ind);
+int add_line(CDATAFRAME* cdata);
+int delete_line(CDATAFRAME* cdata,int ind);
 
 // crée une nouvelle colonne dont le titre est "titre" et l'ajoute dans cdata
-int ajouter_col(CDATAFRAME* cdata, char * titre);
+int add_col(CDATAFRAME* cdata, char * titre);
 
-void supr_col(CDATAFRAME* cdata, int ind);
-void renommer_col(CDATAFRAME* cdata,int ind);
-int val_existance(CDATAFRAME* cdata,int val);
-int remplacer_val(CDATAFRAME* cdata,int pos_col,int pos_lig,int val);
-void afficher_titres(CDATAFRAME* cdata,int nbcol);
+void delete_col(CDATAFRAME* cdata, int ind);
+void rename_col(CDATAFRAME* cdata,int ind);
+int val_exist(CDATAFRAME* cdata,int val);
+int replace_val(CDATAFRAME* cdata,int pos_col,int pos_lig,int val);
+void print_titles(CDATAFRAME* cdata);
 
 
 //4.Analyse et statistiques
-void afficher_nb_lignes(CDATAFRAME* cdata);
-void afficher_nb_col(CDATAFRAME* cdata);
+void print_nb_lines(CDATAFRAME* cdata);
+void print_nb_col(CDATAFRAME* cdata);
 int occ_val_cdata(CDATAFRAME* cdata,int val);
 int sup_val_cdata(CDATAFRAME* cdata,int val); //supérieur
 int inf_val_cdata(CDATAFRAME* cdata,int val);
 
 //En plus
-void afficher_menu();
+void print_menu();
 void delete_cdata(CDATAFRAME* cdata);
 
 

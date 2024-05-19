@@ -104,7 +104,11 @@ int equal_x(COLUMN * col,int x){
 
 // Fonction avancées
 
-// Partionnement des elements du tableau d'index d'une colonne
+/* Partitionnement des elements du tableau d'index d'une colonne
+ On divise en deux la colonne prise en paramètre, avec en paramètre gauche qui est l'index du début et droite l'index de fin
+ Le dernier élément de la colonne est le pivot et compare tous les éléments avec ce dernier. Si l'élément est plus petit on déplace sa position dans le tableau d'index à gauche de l'indice du pivot mais si celui-ci est plus grand on le met à droite.
+ On retourne l'indice du pivot bien placé.
+ */
 int partition (COLUMN* col,int gauche,int droite) {
 
     int pivot = col->donnees[droite];
