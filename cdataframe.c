@@ -294,7 +294,6 @@ int occ_val_cdata(CDATAFRAME* cdata,int val){ //cdata->nombre_elem=nbcol
             {
                 cpt++;
             }
-
         }
     }
     return cpt;

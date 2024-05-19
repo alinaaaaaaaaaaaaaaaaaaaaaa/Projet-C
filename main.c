@@ -74,10 +74,10 @@ int main() {
     equal=equal_x(mycol,c);
     printf("Le nombre de valeurs egales à %d est de %d\n",c,equal);
 
-     //Fin partie 1
+    //Fin partie 1
 
 
-    // Parties des fonctions avancées sur les colonnes ( à mettre en parenthése ma partie 1 )
+    // Parties des fonctions avancées sur les colonnes ( à mettre en parenthése la partie 1 )
     //Début partie 2
 
     COLUMN *mycol;
@@ -132,7 +132,7 @@ int main() {
 
 */
     //MENU
-    //Partie sur le CDataframe (mettre en commentaire partie 1 et 2 sur la colonne)
+    //Partie sur le CDataframe (mettre en commentaire partie 1 et 2 sur la colonne pour plus de confort d'utilisation)
 
     CDATAFRAME *cdata = NULL;
     int nbr_col = 0; // taille_logique
@@ -268,10 +268,10 @@ int main() {
                             int resultat_ajout = add_col(cdata,titre);
                             if (resultat_ajout)
                             {
-                                printf("Colonne bien ajouté!\n");
+                                printf("Colonne bien ajoute!\n");
                             }
                             else {
-                                printf("Impossible à ajouter\n");
+                                printf("Impossible a ajouter\n");
                             }; //à modifier
                             continue;
                         } else {
@@ -317,7 +317,7 @@ int main() {
                     case 7:
                         if (cdata != NULL) {
                             int pos_col, pos_lig, new_val;
-                            printf("Entrez l'indice de la colonne : \n");
+                            printf("Entrez lindice de la colonne : \n");
                             scanf("%d", &pos_col);
                             printf("Entrez lindice de la line : \n");
                             scanf("%d", &pos_lig);
@@ -349,8 +349,8 @@ int main() {
                 printf("1. Afficher le nombre de lignes\n");
                 printf("2. Afficher le nombre de colonnes\n");
                 printf("3. Occurrence de une valeur\n");
-                printf("4. Superieur a une valeur\n");
-                printf("5. Inferieures a une valeur\n");
+                printf("4. Superieure a une valeur\n");
+                printf("5. Inferieure a une valeur\n");
                 printf("0. Retour\n");
 
                 int choice_analyse;
@@ -389,7 +389,7 @@ int main() {
                             printf("Entrez la valeur seuil : ");
                             scanf("%d", &val);
                             nb_sup = sup_val_cdata(cdata,val);
-                            printf("le nombre de valeur superieur a %d est %d\n",val,nb_sup); ;
+                            printf("le nombre de valeur superieure a %d est %d\n",val,nb_sup); ;
                         } else {
                             printf("Le CdataFrame nest pas initialise.\n");
                         }
@@ -400,7 +400,7 @@ int main() {
                             printf("Entrez la valeur seuil : ");
                             scanf("%d", &val);
                             nb_inf = inf_val_cdata(cdata,val);
-                            printf("le nombre de valeur inferieur a %d est %d\n",val,nb_inf); ;
+                            printf("le nombre de valeur inferieure a %d est %d\n",val,nb_inf); ;
                         } else {
                             printf("Le CdataFrame nest pas initialisé.\n");
                         }
