@@ -4,69 +4,75 @@
 
 int main() {
 
+    /*
     //Partie sur la colonne
-/*
-        COLUMN * mycol ;
-        mycol = create_column("My column");
-        printf("%s %d\n",mycol ->titre,mycol->taille_ph);
+    //Fonctions basiques
+    //Début partie 1
 
-        int val = 5;
+    COLUMN * mycol ;
+    mycol = create_column("My column");
+    printf("Le titre: %s, la taille physique : %d\n",mycol ->titre,mycol->taille_ph);
 
-        if (insert_value(mycol, val)) {
-            printf("Value added successfully to my column\n");
-        }
-        else
-        {
-            printf("Error adding value to my column\n");
+    int val = 5;
 
-        }
-        insert_value(mycol, 52);
-        insert_value(mycol, 44);
-        insert_value(mycol, 15);
-        print_col(mycol);
+    if (insert_value(mycol, val)) {
+        printf("Value added successfully to my column\n");
+    }
+    else
+    {
+        printf("Error adding value to my column\n");
 
-        printf("Saisir une valeur:\n");
-        int y;
-        scanf("%d",&y);
-        int occ;
-        occ=nbr_occ(mycol,y); //nbr d'occ de y
-        printf("Nombre doccurences :%d\n",occ);
+    }
+    insert_value(mycol, 52);
+    insert_value(mycol, 44);
+    insert_value(mycol, 15);
+    print_col(mycol);
 
-        printf("Saisir une position:\n");
-        int z;
-        int pos;
-        scanf("%d",&z);
-        pos=pos_x(mycol,z);
+    printf("Saisir une valeur dont on veut connaitre le nombre d'occurrence :\n");
+    int y;
+    scanf("%d",&y);
+    int occ;
+    occ=nbr_occ(mycol,y); //nbr d'occ de y
+    printf("Nombre doccurences :%d\n",occ);
 
-        if (pos!= NULL) {
-            printf("La valeur a la position %d est : %d\n", z, pos);
-        } else {
-            printf("La position %d est en dehors des limites de la colonne.\n", z);
-        }
+    printf("Saisir une position (indice) :\n");
+    int z;
+    int pos;
+    scanf("%d",&z);
+    pos=pos_x(mycol,z);
 
-        printf("Saisir une valeur:\n");
-        int a;
-        scanf("%d",&a);
-        int sup;
-        sup=sup_x(mycol, a);
-        printf("Le nombre de valeurs supérieurs à %d est de %d\n",a,sup);
+    if (pos!= NULL) {
+        printf("La valeur a la position %d est : %d\n", z, pos);
+    } else {
+        printf("La position %d est en dehors des limites de la colonne.\n", z);
+    }
 
-        printf("Saisir une valeur:\n");
-        int b;
-        scanf("%d",&b);
-        int inf;
-        inf=inf_x(mycol,b);
-        printf("Le nombre de valeurs inferieur à %d est de %d",b,inf);
+    printf("Saisir une valeur pour connaitre le nombre de valeur superieur a celle-ci :\n");
+    int a;
+    scanf("%d",&a);
+    int sup;
+    sup=sup_x(mycol, a);
+    printf("Le nombre de valeurs supérieurs a %d est de %d\n",a,sup);
 
-        printf("\nSaisir une valeur:\n");
-        int c;
-        scanf("%d",&c);
-        int equal;
-        equal=equal_x(mycol,c);
-        printf("Le nombre de valeurs egales à %d est de %d\n",c,equal);
+    printf("Saisir une valeur pour connaitre le nombre de valeur inferieur à celle-ci:\n");
+    int b;
+    scanf("%d",&b);
+    int inf;
+    inf=inf_x(mycol,b);
+    printf("Le nombre de valeurs inferieur a %d est de %d",b,inf);
+
+    printf("\nSaisir une valeur pour connaitre combien de valeurs lui sont egales:\n");
+    int c;
+    scanf("%d",&c);
+    int equal;
+    equal=equal_x(mycol,c);
+    printf("Le nombre de valeurs egales à %d est de %d\n",c,equal);
+
+     //Fin partie 1
 
 
-        // Parties avancées sur les colonnes
+    // Parties des fonctions avancées sur les colonnes ( à mettre en parenthése ma partie 1 )
+    //Début partie 2
 
     COLUMN *mycol;
     mycol = create_column("My column");
@@ -81,7 +87,7 @@ int main() {
 
     print_col(mycol);
 
-        int sortdir;
+    int sortdir;
     int valid_index;
     printf("Choisir comment vous voulez trier votre tableau. \n0: Ascendent \n1: Descendent :\n");
     scanf("%d",&sortdir);
@@ -113,10 +119,15 @@ int main() {
     erase_index(mycol);
     free(mycol->donnees);
     free(mycol);
-    */
-    //MENU
 
-    //Partie sur le CDataframe
+    //Fin partie 2
+
+
+
+*/
+    //MENU
+    //Partie sur le CDataframe (mettre en commentaire partie 1 et 2 sur la colonne)
+
     CDATAFRAME *cdata = NULL;
     int nbr_col = 0; // taille_logique
     int choix;
@@ -188,7 +199,7 @@ int main() {
                                 break;
 
                             case 2:
-                                printf("Saisir le nombre de lignes a afficher :\n");
+                                printf("Saisir le nombre de lignes de valeurs a afficher :\n");
                                 scanf("%d",&n);
                                 afficher_cdata_lignes(cdata,n);
                                 break;

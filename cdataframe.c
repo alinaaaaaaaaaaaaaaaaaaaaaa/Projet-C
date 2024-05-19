@@ -164,7 +164,6 @@ int delete_ligne(CDATAFRAME* cdata,int ind) {
 
 }
 
-// ici
 
 int ajouter_col (CDATAFRAME * cdata, char * titre) {
     COLUMN * c = create_column(titre);
@@ -181,6 +180,7 @@ int ajouter_col (CDATAFRAME * cdata, char * titre) {
         delete_column(c);
         return 0;
     }
+
     int val ;
     cdata->columns[cdata->nombre_elem] = c;
     cdata->nombre_elem += 1;
@@ -196,6 +196,7 @@ int ajouter_col (CDATAFRAME * cdata, char * titre) {
 
     return 1;
 }
+
 
 void supr_col(CDATAFRAME* cdata, int ind) {
     if (ind < 0 || ind >= cdata->nombre_elem) {
