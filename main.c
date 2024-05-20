@@ -10,11 +10,11 @@ Il permet aussi de tester les fonctions sur les colonnes. Pour cela, mettre en c
 
 int main() {
 
-    /*
+
     //Partie sur la colonne
     //Fonctions basiques
     //Début partie 1
-
+/*
     COLUMN * mycol ;
     mycol = create_column("My column");
     printf("Le titre: %s, la taille physique : %d\n",mycol ->titre,mycol->taille_ph);
@@ -74,14 +74,14 @@ int main() {
     equal=equal_x(mycol,c);
     printf("Le nombre de valeurs egales à %d est de %d\n",c,equal);
 
-    //Fin partie 1
+    //Fin partie 1 */
 
-
+/*
     // Parties des fonctions avancées sur les colonnes ( à mettre en parenthése la partie 1 )
     //Début partie 2
 
-    COLUMN *mycol;
-    mycol = create_column("My column");
+    COLUMN_AVC *mycol;
+    mycol = create_column_avc("My column");
     printf("%s %d\n", mycol->titre, mycol->taille_ph);
 
 
@@ -89,7 +89,7 @@ int main() {
     insert_value(mycol, 52);
     insert_value(mycol, 15);
     insert_value(mycol, 44);
-    printf("Voici le tableau non trié : \n");
+    printf("Voici le tableau non trie : \n");
 
     print_col(mycol);
 
@@ -123,14 +123,13 @@ int main() {
     }
 
     erase_index(mycol);
-    free(mycol->donnees);
-    free(mycol);
+  */
 
     //Fin partie 2
 
 
 
-*/
+
     //MENU
     //Partie sur le CDataframe (mettre en commentaire partie 1 et 2 sur la colonne pour plus de confort d'utilisation)
 

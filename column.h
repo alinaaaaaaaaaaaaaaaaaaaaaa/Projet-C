@@ -5,6 +5,14 @@ typedef struct {
     int taille_log;
     int taille_ph;
 
+} COLUMN;
+
+typedef struct {
+    char* titre;
+    int * donnees;
+    int taille_log;
+    int taille_ph;
+
     unsigned long long *index;
     int valid_index;
     // index valid
@@ -16,7 +24,7 @@ typedef struct {
     // 0 : ASC
     // 1 : DESC
 
-} COLUMN;
+} COLUMN_AVC;
 
 //Fonction prévu pour la gestion de la colonne
 COLUMN * create_column(char * titre);
@@ -34,14 +42,14 @@ int equal_x(COLUMN * col,int x);
 // Fonctions avancées
 #define ASC 0
 #define DESC 1
-
-int partition (COLUMN* col,int gauche,int droite) ;
-void quicksort (COLUMN* col,int gauche,int droite );
-void sort(COLUMN* col, int sort_dir);
-void print_col_by_index(COLUMN *col);
-void erase_index(COLUMN *col);
-int check_index(COLUMN *col);
-void update_index(COLUMN *col);
-int search_value_in_column(COLUMN *col, int val);
+COLUMN_AVC * create_column_avc(char * titre);
+int partition (COLUMN_AVC * col,int gauche,int droite) ;
+void quicksort (COLUMN_AVC * col,int gauche,int droite );
+void sort(COLUMN_AVC * col, int sort_dir);
+void print_col_by_index(COLUMN_AVC *col);
+void erase_index(COLUMN_AVC *col);
+int check_index(COLUMN_AVC *col);
+void update_index(COLUMN_AVC *col);
+int search_value_in_column(COLUMN_AVC *col, int val);
 
 

@@ -50,10 +50,11 @@ int insert_value(COLUMN* col, int value){
  */
 void delete_column(COLUMN *col) {
     if (col != NULL) {
-        free((col)->donnees);
+        free(col->donnees);
         free(col);
     }
 }
+
 
 /*
  Affiche la colonne que l'on passe en paramètre.
@@ -139,15 +140,26 @@ int equal_x(COLUMN * col,int x){
     return cpt;
 }
 
-
 // Fonction avancées
+
+COLUMN_AVC * create_column_avc(char * titre){
+    COLUMN_AVC * ptr_col;
+    ptr_col = (COLUMN_AVC *)malloc(sizeof(COLUMN_AVC )); // Allocation d'espace pour avoir une colonne
+    ptr_col->titre = titre;
+    ptr_col->taille_ph = 0;
+    ptr_col->taille_log = 0;
+    ptr_col->valid_index = 0;
+    ptr_col->index = NULL;
+    ptr_col->sort_dir = 0;
+    return ptr_col;
+}
 
 /* Partitionnement des elements du tableau d'index d'une colonne
  On divise en deux la colonne prise en paramètre, avec en paramètre gauche qui est l'index du début et droite l'index de fin
  Le dernier élément de la colonne est le pivot et compare tous les éléments avec ce dernier. Si l'élément est plus petit on déplace sa position dans le tableau d'index à gauche de l'indice du pivot mais si celui-ci est plus grand on le met à droite.
  On retourne l'indice du pivot bien placé.
  */
-int partition (COLUMN* col,int gauche,int droite) {
+int partition (COLUMN_AVC * col,int gauche,int droite) {
 
     int pivot = col->donnees[droite];
     int i = gauche - 1;
@@ -170,7 +182,7 @@ int partition (COLUMN* col,int gauche,int droite) {
 Permet de trier la colonne prise en paramètre par ordre croissant, avec en paramètre gauche qui est l'index du début et droite l'index de fin.
 On ne retourne rien car on modifie le tableau.
  */
-void quicksort (COLUMN* col,int gauche,int droite ){
+void quicksort (COLUMN_AVC * col,int gauche,int droite ){
     if (gauche < droite) { // plus petit au plus grand
         int pi = partition(col, gauche, droite);
         quicksort(col, gauche, pi - 1);
@@ -182,7 +194,7 @@ void quicksort (COLUMN* col,int gauche,int droite ){
 Permet de trier la colonne prise en paramètre par ordre croissant ou décroissant selon la valeur sort_dir prise en paramètre.
 On ne retourne rien car on modifie le tableau selon le tri demandé.
  */
-void sort(COLUMN* col, int sort_dir){
+void sort(COLUMN_AVC * col, int sort_dir){
 
     col->index = (unsigned long long*) malloc(col->taille_log * sizeof(unsigned long long));
     if (!col->index) {
@@ -275,7 +287,7 @@ void sort(COLUMN* col, int sort_dir){
 Permet d'afficher les valeurs de la colonne prise en paramètre selon le tableau d'index.
 On ne retourne rien car on affiche uniquement.
  */
-void print_col_by_index(COLUMN *col){
+void print_col_by_index(COLUMN_AVC *col){
 
     for (int i = 0; i< col->taille_log; i ++){
         printf("[%d] %d\n",i,col->donnees[col->index[i]]);
@@ -286,7 +298,7 @@ void print_col_by_index(COLUMN *col){
 Permet de supprimer l'association d'un index à une colonne prise en paramètre et donc d'effacer la mémoire allouée pour le tableau d'index.
 On ne retourne rien car on modifie index et valid_index.
 */
-void erase_index(COLUMN *col){
+void erase_index(COLUMN_AVC *col){
     free(col->index);
     col->index = NULL;
     col->valid_index = 0;
@@ -296,7 +308,7 @@ void erase_index(COLUMN *col){
 Permet de vérifier l'existence d'un valid_index dans une colonne prise en paramètre.
 Retourne 1 si valid_index existe, 0 s'il n'existe pas et -1 s'il est invalide.
  */
-int check_index(COLUMN *col) {
+int check_index(COLUMN_AVC *col) {
 
     if (col->valid_index == 1) {
         printf("L'index existe\n");
@@ -314,7 +326,7 @@ int check_index(COLUMN *col) {
 Permet de mettre à jour le tableau d'index de la colonne prise en paramètre.
 Ne retourne rien car on modifie uniquement.
  */
-void update_index(COLUMN *col){
+void update_index(COLUMN_AVC *col){
     sort(col,col->sort_dir);
 }
 
@@ -322,7 +334,7 @@ void update_index(COLUMN *col){
 Permet à l'aide d'une recherche dichotomique de rechercher une valeur prise en paramètre dans une colonne également prise en paramètre.
 Retourne 1 si la valeur existe dans le cas contraire on retourne 0.
 */
-int search_value_in_column(COLUMN *col, int val){
+int search_value_in_column(COLUMN_AVC *col, int val){
 
     int arret=0,g=0,pos,m;
     int d = col->taille_log - 1;
@@ -351,5 +363,4 @@ int search_value_in_column(COLUMN *col, int val){
 
     }
 }
-
 

@@ -202,12 +202,14 @@ int add_col (CDATAFRAME * cdata, char * titre) {
 
     cdata->columns[cdata->nombre_elem-1]->taille_log = cdata->columns[cdata->nombre_elem-2]->taille_log;
 
-    for (int i = 0; i< cdata->columns[0]->taille_log;i++){
-        printf("Saisir la %de valeur a ajoute dans la nouvelle colonne\n",i+1);
-        scanf("%d",&val);
-        insert_value(cdata->columns[cdata->nombre_elem-1], val);
+    for (int i = 0; i< cdata->columns[0]->taille_log;i++) {
+        printf("Saisir la %de valeur a ajoute dans la nouvelle colonne\n", i + 1);
+        scanf("%d", &val);
+        if (!insert_value(c, val)) {
+            fprintf(stderr, "Insertion of value into the new column failed\n");
+            return 0;
+        }
     }
-
     return 1;
 }
 
@@ -215,18 +217,32 @@ int add_col (CDATAFRAME * cdata, char * titre) {
 //Il ne retoune rien.
 void delete_col(CDATAFRAME* cdata, int ind) {
     if (ind < 0 || ind >= cdata->nombre_elem) {
-        printf("La colonne na pas ete supprimee en raison dindice invalide\n");
+        printf("La colonne n'a pas ete supprimee en raison d'indice invalide\n");
+        return; // Sortir de la fonction si l'indice est invalide
     }
 
-    delete_column(&cdata->columns[ind]); // Supprimer la colonne à l'index ind
+    delete_column(cdata->columns[ind]); // Supprimer la colonne à l'index ind
 
     for (int i = ind; i < cdata->nombre_elem - 1; i++) {
         cdata->columns[i] = cdata->columns[i + 1];
     }
 
-    (cdata->nombre_elem)--;
+    cdata->nombre_elem--;
+
+    if (cdata->nombre_elem == 0) {
+        free(cdata->columns);
+        cdata->columns = NULL;
+    } else {
+        cdata->columns = realloc(cdata->columns, cdata->nombre_elem * sizeof(COLUMN *));
+        if (!cdata->columns) {
+            fprintf(stderr, "Reallocation de la memoire pour columns a echoue\n");
+
+        }
+    }
+
     printf("La colonne a ete supprimee\n");
 }
+
 
 //Permet de renommer une colonne à un indice ind en prenant en paramètres un pointeur sur cdataframe et l'indice de la colonne.
 //Il ne retourne rien.
